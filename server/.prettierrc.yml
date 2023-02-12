@@ -1,0 +1,13 @@
+tabWidth: 4
+semi: false
+singleQuote: true
+jsxSingleQuote: true
+trailingComma: all
+overrides:
+  - files:
+      - '*.yml'
+      - '*.yaml'
+      - '*.json'
+      - '*.prisma'
+    options:
+      tabWidth: 2
