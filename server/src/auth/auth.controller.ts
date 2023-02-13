@@ -48,32 +48,4 @@ export class AuthController {
     async signUp(@Body() signUpCredentials: SignUpCredentialsDto): Promise<User> {
         return this.authService.signUp(signUpCredentials);
     }
-
-    // @Public()
-    // @Post('sign-up')
-    // async signUp(@Body() { email }: SignUpCredentialsDto): Promise<void> {
-    //     return this.authService.createMagicLink(email)
-    // }
-
-    // @Public()
-    // @Post('set-password')
-    // async setPassword(
-    //     @Body() { password, token }: SetPasswordCredentialsDto,
-    //     @Res({ passthrough: true }) response: Response,
-    // ): Promise<void> {
-    //     const user = await this.authService.upsertPassword(token, password)
-    //     const { accessToken } = await this.authService.login(user)
-    //     response.cookie(
-    //         this.configService.select(({ auth }) => auth.cookieKey),
-    //         accessToken,
-    //         {
-    //             httpOnly: true,
-    //             maxAge: this.configService.select(
-    //                 ({ auth }) => auth.accessTokenExpiresIn,
-    //             ),
-    //             sameSite: 'none',
-    //             secure: true,
-    //         },
-    //     )
-    // }
 }
