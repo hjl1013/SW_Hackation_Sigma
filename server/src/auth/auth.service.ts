@@ -1,5 +1,5 @@
 import { MailerService } from '@nestjs-modules/mailer';
-import { ForbiddenException, Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
@@ -8,7 +8,6 @@ import { ConfigService } from '../config/config.service';
 import { LoginCredentialsDto } from './dto/login-credentials.dto';
 import { SignUpCredentialsDto } from './dto/sign-up-credentials.dto';
 import { JWTPayload } from './models/JWTPayload';
-import { MagicLinkPayload } from './models/MagicLinkPayload';
 
 @Injectable()
 export class AuthService {
