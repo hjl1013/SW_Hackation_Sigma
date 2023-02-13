@@ -19,13 +19,7 @@ export class AuthService {
     ) {}
 
     private logger = new Logger(AuthService.name)
-
-    private findMemberByEmail(email: string) {
-        return this.configService
-            .select(({ auth }) => auth.memberList)
-            .find((member) => member.email === email)
-    }
-
+    
     async signUp(signUpCredentials: SignUpCredentialsDto): Promise<User> {
         const { email, password, name } = signUpCredentials;
         const hashedPassword = await bcrypt.hash(password, 10);
