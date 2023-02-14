@@ -1,4 +1,3 @@
-import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
@@ -14,7 +13,6 @@ export class AuthService {
     constructor(
         private jwtService: JwtService,
         private prisma: PrismaService,
-        private mailerService: MailerService,
         private configService: ConfigService,
     ) {}
 

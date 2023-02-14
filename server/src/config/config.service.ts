@@ -24,19 +24,6 @@ export class ConfigService {
                         throw new Error('JWT_SECRET 환경변수가 빠져있습니다.')
                     })(),
             },
-            // 매직링크 메일 보낼 때 사용
-            mailing: {
-                email: 'record.snusigma@gmail.com',
-                password:
-                    process.env['EMAIL_AUTH_PASSWORD'] ??
-                    (() => {
-                        throw new Error(
-                            'EMAIL_AUTH_PASSWORD 환경변수가 빠져있습니다.',
-                        )
-                    })(),
-                host: 'smtp.gmail.com',
-                userName: '시그마 인텔리전스',
-            },
             redirect: {
                 // 현재는 매직링크를 위한 base url로 사용
                 webBaseUrl: 'https://web.sigma-intelligence.com',
@@ -64,12 +51,6 @@ export class ConfigService {
                 accessTokenExpiresIn: number
                 cookieKey: string
                 jwtSecret: string
-            }
-            mailing: {
-                email: string
-                password: string
-                host: string
-                userName: string
             }
             redirect: {
                 webBaseUrl: string
