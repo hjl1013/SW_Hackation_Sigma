@@ -7,6 +7,7 @@ import { Public } from '../utility/decorators/public.decorator'
 import { ConfigService } from '../config/config.service'
 import { SignUpCredentialsDto } from './dto/sign-up-credentials.dto'
 import { User } from '@prisma/client'
+import { UserDto } from 'src/common/dto/user.dto'
 
 @Controller('auth')
 @ApiTags('auth')
@@ -45,7 +46,7 @@ export class AuthController {
 
     @Public()
     @Post('sign-up')
-    async signUp(@Body() signUpCredentials: SignUpCredentialsDto): Promise<User> {
+    async signUp(@Body() signUpCredentials: SignUpCredentialsDto): Promise<UserDto> {
         return this.authService.signUp(signUpCredentials);
     }
 }

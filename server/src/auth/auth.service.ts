@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'nestjs-prisma';
+import { UserDto } from 'src/common/dto/user.dto';
 import { ConfigService } from '../config/config.service';
 import { LoginCredentialsDto } from './dto/login-credentials.dto';
 import { SignUpCredentialsDto } from './dto/sign-up-credentials.dto';
@@ -18,7 +19,7 @@ export class AuthService {
 
     private logger = new Logger(AuthService.name)
     
-    async signUp(signUpCredentials: SignUpCredentialsDto): Promise<User> {
+    async signUp(signUpCredentials: SignUpCredentialsDto): Promise<UserDto> {
         const { email, password, name } = signUpCredentials;
         const hashedPassword = await bcrypt.hash(password, 10);
         return this.prisma.user.upsert({
@@ -51,6 +52,14 @@ export class AuthService {
                     },
                 },
             },
+            include: {
+                profile: {
+                    include: {
+                        avatar: true
+                    }
+                },
+                posts: true
+            }
         });
     }
 
