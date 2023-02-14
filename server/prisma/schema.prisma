@@ -18,18 +18,47 @@ model User {
   userAuth   UserAuth    @relation(fields: [userAuthId], references: [id])
   profileId  Int         @unique
   profile    UserProfile @relation(fields: [profileId], references: [id])
+  
+  posts Post[]
+
+  @@map("USER")
 }
 
 model UserAuth {
-  id   Int   @id @default(autoincrement())
+  id             Int    @id @default(autoincrement())
+  hashedPassword String
+
   user User?
 
-  hashedPassword String
+  @@map("USER_AUTH")
 }
 
 model UserProfile {
-  id   Int   @id @default(autoincrement())
+  id   Int    @id @default(autoincrement())
+  name String
+
   user User?
 
-  name String
+  avatarId Int    @unique
+  avatar   UserAvatar @relation(fields: [avatarId], references: [id])
+
+  @@map("USER_PROFILE")
+}
+
+model UserAvatar {
+  id              Int    @id @default(autoincrement())
+  characterImgUrl String
+  carImgUrl       String
+
+  userProfile UserProfile?
+
+  @@map("USER_AVATAR")
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  // implement later
 }

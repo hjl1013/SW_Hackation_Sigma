@@ -37,6 +37,12 @@ export class AuthService {
                 profile: {
                     create: {
                         name: name,
+                        avatar: {
+                            create: {
+                                characterImgUrl: "",
+                                carImgUrl: ""
+                            }
+                        }
                     },
                 },
             },
