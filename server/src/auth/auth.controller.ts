@@ -6,7 +6,6 @@ import { LoginCredentialsDto } from './dto/login-credentials.dto'
 import { Public } from '../utility/decorators/public.decorator'
 import { ConfigService } from '../config/config.service'
 import { SignUpCredentialsDto } from './dto/sign-up-credentials.dto'
-import { User } from '@prisma/client'
 import { UserDto } from 'src/common/dto/user.dto'
 
 @Controller('auth')
