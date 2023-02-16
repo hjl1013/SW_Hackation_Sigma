@@ -16,6 +16,7 @@
 
 .menuBar__item:hover {
     cursor: pointer;
+    background-color: lightgray;
 }
 
 .menuBar__item > h4 {
@@ -24,4 +25,16 @@
 
 .menuBar__item > .MuiSvgIcon-root {
     font-size: xx-large;
+}
+
+.menuBar__item--active {
+    background-color: lightgray;
+}
+
+.menuBar__item--active > .MuiSvgIcon-root {
+    color: white;
+}
+
+.menuBar__item--active > h4 {
+    color: white;
 }

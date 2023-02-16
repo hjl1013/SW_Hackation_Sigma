@@ -1,4 +1,15 @@
 .profile {
     display: flex;
     justify-content: space-evenly;
+    background-color: #f1f2f5;
+}
+
+.profile__left {
+    position: fixed;
+    left: 0;
+}
+
+.profile__right {
+    position: fixed;
+    right: 0;
 }
