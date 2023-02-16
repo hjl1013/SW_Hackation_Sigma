@@ -6,33 +6,35 @@
     width: 200px;
 }
 
-.menuBar__item {
+.menuBar > a {
+    text-decoration: none;
     box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
 }
 
-.menuBar__item > a{
+.menuBar__item {
     display: flex;
     align-items: center;
     padding: 10px;
     margin-left: 5px;
     color: black;
-    text-decoration: none;
     transition: transform 100ms ease-in;
 }
 
-.menuBar__item > a:hover {
+.menuBar__item:hover {
     cursor: pointer;
     transform: scale(1.07);
+    box-shadow: none;
 }
 
-.menuBar__item > a > h4 {
+.menuBar__item >  h4 {
+    
     margin-left: 5px;
 }
 
-.menuBar__item > a > .MuiSvgIcon-root {
+.menuBar__item > .MuiSvgIcon-root {
     font-size: xx-large;
 }
 
-.menuBar__item > a:visited {
+.menuBar__item:visited {
     color:black;
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Home.css'
+import StarIcon from '@mui/icons-material/Star';
 
 import MenuBar from '../../common/components/MenuBar'
 import Map from './components/Map'
@@ -16,6 +17,9 @@ function Home() {
             </div>
 
             <div className='home__floating'>
+                <div className='home__favorites'>
+                    <StarIcon />
+                </div>
                 {/* Favorites */}
                 {/* Chatting */}
             </div>
