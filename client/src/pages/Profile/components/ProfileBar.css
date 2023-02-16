@@ -1,0 +1,11 @@
+.profileBar {
+    width: 200px;
+}
+
+.profileBar__item {
+    padding: 10px;
+}
+
+.profileBar__item > h4 {
+    text-align: end;
+}
