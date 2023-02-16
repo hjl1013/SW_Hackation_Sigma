@@ -7,33 +7,46 @@ import PeopleIcon from '@mui/icons-material/People';
 import TvIcon from '@mui/icons-material/Tv';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { Link } from 'react-router-dom';
 
 function MenuBar() {
     return (
         <div className='menuBar'>
             <div className='menuBar__item'>
-                <HomeIcon />
-                <h4>Home</h4>
+                <Link to='/'>
+                    <HomeIcon />
+                    <h4>Home</h4>
+                </Link>
             </div>
             <div className='menuBar__item'>
-                <AccountCircleIcon />
-                <h4>Profile</h4>
+                <Link to="/profile">
+                    <AccountCircleIcon />
+                    <h4>Profile</h4>
+                </Link>
             </div>
             <div className='menuBar__item'>
-                <PeopleIcon />
-                <h4>Community</h4>
+                <Link to='/'>
+                    <PeopleIcon />
+                    <h4>Community</h4>
+                </Link>
             </div>
             <div className='menuBar__item'>
-                <TvIcon />
-                <h4>Entertainment</h4>
+                <Link to='/'>
+                    <TvIcon />
+                    <h4>Entertainment</h4>
+                </Link>
             </div>
             <div className='menuBar__item'>
-                <DirectionsCarIcon />
-                <h4>Controls</h4>
+                <Link to='/'>
+                    <DirectionsCarIcon />
+                    <h4>Controls</h4>
+                </Link>
             </div>
             <div className='menuBar__item'>
-                <SettingsIcon />
-                <h4>Settings</h4>
+                <Link to='/'>
+                    <SettingsIcon />
+                    <h4>Settings</h4>
+                </Link>
             </div>
         </div>
     )

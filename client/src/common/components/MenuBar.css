@@ -7,21 +7,27 @@
     border-right: 1px solid lightgray;
 }
 
-.menuBar__item {
+.menuBar__item > a{
     display: flex;
     align-items: center;
     padding: 10px;
     box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    color: black;
+    text-decoration: none;
 }
 
-.menuBar__item:hover {
+.menuBar__item > a:hover {
     cursor: pointer;
 }
 
-.menuBar__item > h4 {
+.menuBar__item > a > h4 {
     margin-left: 5px;
 }
 
-.menuBar__item > .MuiSvgIcon-root {
+.menuBar__item > a > .MuiSvgIcon-root {
     font-size: xx-large;
+}
+
+.menuBar__item > a:visited {
+    color:black;
 }
