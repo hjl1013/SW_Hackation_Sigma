@@ -1,0 +1,14 @@
+.favorites {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    z-index: 999;
+    margin: 10px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 99px;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px -3px rgba(0, 0, 0, 0.75);
+}

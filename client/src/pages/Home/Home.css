@@ -24,14 +24,9 @@
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 2;
+    z-index: 999;
     margin: 10px;
     padding: 5px;
     background-color: white;
-    border-radius: 99px;
-    
-}
-
-.home__favorites > .MuiSvgIcon-root {
-    font-size: xx-large;
+    border-radius: 99px;   
 }
