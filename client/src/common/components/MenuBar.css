@@ -2,22 +2,27 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 100vh;
+    height: 95vh;
     width: 200px;
-    border-right: 1px solid lightgray;
+}
+
+.menuBar__item {
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
 }
 
 .menuBar__item > a{
     display: flex;
     align-items: center;
     padding: 10px;
-    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    margin-left: 5px;
     color: black;
     text-decoration: none;
+    transition: transform 100ms ease-in;
 }
 
 .menuBar__item > a:hover {
     cursor: pointer;
+    transform: scale(1.07);
 }
 
 .menuBar__item > a > h4 {
