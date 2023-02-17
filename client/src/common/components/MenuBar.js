@@ -21,36 +21,36 @@ function MenuBar({ page }) {
 
             <Link to="/profile">
                 <div className={`menuBar__item ${ page === 'profile' && 'menuBar__item--active' }`}>
-                        <AccountCircleIcon />
-                        <h4>Profile</h4>
+                    <AccountCircleIcon />
+                    <h4>Profile</h4>
                 </div>
             </Link>
 
             <Link to='/'>
                 <div className={`menuBar__item ${ page === 'community' && 'menuBar__item--active' }`}>
-                        <PeopleIcon />
-                        <h4>Community</h4>
+                    <PeopleIcon />
+                    <h4>Community</h4>
                 </div>
             </Link>
 
             <Link to='/'>
                 <div className={`menuBar__item ${ page === 'entertainment' && 'menuBar__item--active' }`}>
-                        <TvIcon />
-                        <h4>Entertainment</h4>
+                    <TvIcon />
+                    <h4>Entertainment</h4>
                 </div>
             </Link>
 
             <Link to='/'>
                 <div className={`menuBar__item ${ page === 'controls' && 'menuBar__item--active' }`}>
-                        <DirectionsCarIcon />
-                        <h4>Controls</h4>
+                    <DirectionsCarIcon />
+                    <h4>Controls</h4>
                 </div>
             </Link>
 
             <Link to='/'>
                 <div className={`menuBar__item ${ page === 'settings' && 'menuBar__item--active' }`}>
-                        <SettingsIcon />
-                        <h4>Settings</h4>
+                    <SettingsIcon />
+                    <h4>Settings</h4>
                 </div>
             </Link>
         </div>
