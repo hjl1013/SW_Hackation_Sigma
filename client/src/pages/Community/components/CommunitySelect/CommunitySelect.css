@@ -1,0 +1,50 @@
+.communitySelect {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+
+.communitySelect__search {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.communitySelect__searchInput {
+    background-color: lightgray;
+    border-radius: 999px;
+    padding: 10px;
+}
+
+.communitySelect__searchInput > form {
+    display: flex;
+    align-items: center;
+}
+
+.communitySelect__searchInput > form > input {
+    outline-width: 0;
+    border: none;
+    background-color: transparent;
+    width: 500px;
+}
+
+.communitySelect__searchInput > form > button {
+    display: none;
+}
+
+.communitySelect__communityIcons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1000px;
+    justify-content: center;
+}
+
+.communitySelect__communityIcon {
+    transition: transform 100ms ease-in;
+    margin: 10px;
+}
+
+.communitySelect__communityIcon:hover {
+    cursor: pointer;
+    transform: scale(1.07);
+}

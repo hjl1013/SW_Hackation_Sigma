@@ -9,10 +9,8 @@ function AppRouter() {
         <HashRouter>
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/profile' element={<Profile profileContent='myProfile'/>}>
-                    <Route path='/profile/myProfile' element={<Profile profileContent='myProfile'/>} />
-                </Route>
-                <Route path='/community' element={<Community />} />
+                <Route path='/profile/:profileContent' element={<Profile />} />
+                <Route path='/community' element={<Community communityContent='select'/>} />
             </Routes>
         </HashRouter>
     )

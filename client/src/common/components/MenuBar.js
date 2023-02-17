@@ -19,14 +19,14 @@ function MenuBar({ page }) {
                 </div>
             </Link>
 
-            <Link to="/profile">
+            <Link to="/profile/myProfile">
                 <div className={`menuBar__item ${ page === 'profile' && 'menuBar__item--active' }`}>
                     <AccountCircleIcon />
                     <h4>Profile</h4>
                 </div>
             </Link>
 
-            <Link to='/'>
+            <Link to='/community'>
                 <div className={`menuBar__item ${ page === 'community' && 'menuBar__item--active' }`}>
                     <PeopleIcon />
                     <h4>Community</h4>
