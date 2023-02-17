@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 
 const {naver} = window;
 
-function Map() {
+function Map({ zoom }) {
     const mapElement = useRef(null);
 
 
@@ -11,11 +11,11 @@ function Map() {
     const { naver } = window;
     if (!mapElement.current || !naver) return;
 
-    // 지도에 표시할 위치의 위도와 경도 좌표를 파라미터로 넣어줍니다.
     const location = new naver.maps.LatLng(37.5656, 126.9769);
     const mapOptions = {
       center: location,
-      zoom: 17,
+      // zoom: 17,
+      zoom: { zoom },
       zoomControl: true,
       zoomControlOptions: {
         position: naver.maps.Position.TOP_RIGHT,

@@ -1,6 +1,6 @@
-.favorites__icon {
+.chatting__icon {
     position: absolute;
-    top: 0;
+    top: 50px;
     right: 0;
     width: 32px;
     height: 32px;
@@ -15,15 +15,15 @@
     transition: transform 100ms ease-in;
 }
 
-.favorites__icon > .MuiSvgIcon-root {
+.chatting__icon > .MuiSvgIcon-root {
     font-size: xx-large;
 }
 
-.favorites__icon:hover {
+.chatting__icon:hover {
     transform: scale(1.07);
 }
 
-.favorites__popup {
+.chatting__popup {
     position: fixed;
     top: 0;
     bottom: 0;

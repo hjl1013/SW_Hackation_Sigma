@@ -30,3 +30,11 @@
     background-color: white;
     border-radius: 99px;   
 }
+
+.home__zoom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    margin: 30px;
+}
