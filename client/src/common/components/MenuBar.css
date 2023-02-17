@@ -2,24 +2,38 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 100vh;
+    height: 95vh;
     width: 200px;
-    border-right: 1px solid lightgray;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 3px 5px 10px -3px rgba(0, 0, 0, 0.75);
+    margin: 10px;
+}
+
+.menuBar > a {
+    text-decoration: none;
 }
 
 .menuBar__item {
     display: flex;
     align-items: center;
-    padding: 10px;
-    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    padding: 10px 10px 10px 15px;
+    color: black;
+    transition: transform 100ms ease-in;
+    /* box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75); */
 }
 
 .menuBar__item:hover {
     cursor: pointer;
-    background-color: lightgray;
+    transform: scale(1.07);
+    /* box-shadow: none; */
 }
 
-.menuBar__item > h4 {
+.menuBar__item >  h4 {
+    
     margin-left: 5px;
 }
 
@@ -27,14 +41,14 @@
     font-size: xx-large;
 }
 
-.menuBar__item--active {
-    background-color: lightgray;
+.menuBar__item:visited {
+    color:black;
 }
 
 .menuBar__item--active > .MuiSvgIcon-root {
-    color: white;
+    color: #2e81f4;
 }
 
 .menuBar__item--active > h4 {
-    color: white;
+    color: #2e81f4;
 }
