@@ -12,7 +12,7 @@ function Home() {
     return (
         <div className='home'>
             <div className='home__menuBar'>
-                <MenuBar />
+                <MenuBar page='home'/>
             </div>
 
             <div className='home__map'>

@@ -8,7 +8,9 @@ function AppRouter() {
         <HashRouter>
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/profile' element={<Profile />} />
+                <Route path='/profile' element={<Profile profileContent='myProfile'/>}>
+                    <Route path='/profile/myProfile' element={<Profile profileContent='myProfile'/>} />
+                </Route>
             </Routes>
         </HashRouter>
     )
