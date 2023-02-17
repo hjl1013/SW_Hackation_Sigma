@@ -10,6 +10,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Community {
+  id    Int    @id @default(autoincrement())
+  commuId Int @unique @default(autoincrement())
+
+  commuInfoId  Int @unique
+  commuInfo CommuInfo @relation(fields: [commuInfoId], references: [commuId])
+
+  commuGroupMember User[]
+
+  commuBoard CommuBoard
+
+  @@map("COMMUNITY")
+}
+
+model CommuBoard {
+  id    Int    @id @default(autoincrement())
+  commuId Int @unique @default(autoincrement())
+
+  commuThemeName String[] @unique
+  commuThemeIconImgUrl String
+  commuThemePosts Post[]
+}
+
+model CommuInfo {
+  id    Int    @id @default(autoincrement())
+  commuId Int @unique @default(autoincrement())
+
+  community Community?
+
+  commuProfileImgUrl String
+  commuName String @unique
+  commuInfo String
+  commuHT String[]
+ 
+ @@map("COMMU_INFO")
+}
+
+
 model User {
   id    Int    @id @default(autoincrement())
   email String @unique
@@ -20,6 +58,7 @@ model User {
   profile    UserProfile @relation(fields: [profileId], references: [id])
   
   posts Post[]
+  communities Community[]
 
   @@map("USER")
 }
@@ -60,5 +99,6 @@ model Post {
 
   userId Int
   user User @relation(fields: [userId], references: [id])
+
   // implement later
 }

@@ -45,7 +45,9 @@ export class AuthController {
 
     @Public()
     @Post('sign-up')
-    async signUp(@Body() signUpCredentials: SignUpCredentialsDto): Promise<UserDto> {
-        return this.authService.signUp(signUpCredentials);
+    async signUp(
+        @Body() signUpCredentials: SignUpCredentialsDto,
+    ): Promise<UserDto> {
+        return this.authService.signUp(signUpCredentials)
     }
 }
