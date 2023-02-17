@@ -8,6 +8,8 @@ import Chatting from './components/Chatting';
 import ZoomButton from './components/ZoomButton';
 
 function Home() {
+    const [zoom, setZoom] = useState(17);
+
 
     return (
         <div className='home'>
@@ -27,7 +29,7 @@ function Home() {
             </div>
 
             <div className='home__zoom'>
-                <ZoomButton zoom/>
+                <ZoomButton zoom={zoom} onValueChange={setZoom}/>
                 {/* ZoomButton */}
             </div>
         </div>

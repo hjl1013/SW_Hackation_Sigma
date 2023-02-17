@@ -14,8 +14,8 @@ function Map({ zoom }) {
     const location = new naver.maps.LatLng(37.5656, 126.9769);
     const mapOptions = {
       center: location,
-      // zoom: 17,
-      zoom: { zoom },
+      zoom: 17,
+      // zoom: { zoom },
       zoomControl: true,
       zoomControlOptions: {
         position: naver.maps.Position.TOP_RIGHT,
@@ -26,7 +26,7 @@ function Map({ zoom }) {
       position: location,
       map,
     });
-  }, []);
+  }, [zoom]);
 
 
   return <div ref={mapElement} style={{ height: "100vh", width: "100vw" }} />;
