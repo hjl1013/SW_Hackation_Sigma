@@ -23,7 +23,7 @@ function Home() {
             </div>
 
             <div className='home__floating'>
-                <Favorites />
+                <Favorites />   
                 <Chatting />
                 {/* Favorites */}
                 {/* Chatting */}

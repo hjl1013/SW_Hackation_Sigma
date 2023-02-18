@@ -1,60 +1,19 @@
-// import React, { useEffect, useRef } from 'react'
-
-// const {naver} = window;
-
-// function Map({ zoom }) {
-//     const mapElement = useRef(null);
-
-
-//   useEffect(() => {
-//     const { naver } = window;
-//     if (!mapElement.current || !naver) return;
-
-//     const location = new naver.maps.LatLng(37.5656, 126.9769);
-//     const mapOptions = {
-//       center: location,
-//       zoom: 17,
-//       // zoom: { zoom },
-//       zoomControl: true,
-//       zoomControlOptions: {
-//         position: naver.maps.Position.TOP_RIGHT,
-//       },
-//     };
-//     const map = new naver.maps.Map(mapElement.current, mapOptions);
-//     new naver.maps.Marker({
-//       position: location,
-//       map,
-
-//     });
-//   }, [zoom]);
-
-
-//   return <div ref={mapElement} style={{ height: "100vh", width: "100vw" }} />;
-// }
-
-// export default Map
-
-
-
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import ReactDomServer from 'react-dom/server'
 import './Map.css'
-import { Container as MapDiv, NaverMap, Marker, useNavermaps, useMap, useListener, Listener, Overlay, NavermapsProvider } from 'react-naver-maps'
+import { Container as MapDiv, NaverMap, Marker, useNavermaps, useMap, useListener, Listener, Overlay, NavermapsProvider, InfoWindow } from 'react-naver-maps'
 import { makeMarkerClustering } from './makeMarkerClustering'
 import accidentDeath from './accidentDeath'
+import Popup from './Popup'
+
 
 function MyMarkers() {
   const navermaps = useNavermaps()
   const { naver } = window;
+  const naverMap = useMap();
 
-  var infowindows = [];
+  const componentString = ReactDomServer.renderToString(<Popup />)
 
-  infowindows.push(new naver.maps.InfoWindow({
-      content: [
-          '<div class="iw_inner">',
-          '   <h3>주역이네 집</h3>',
-          '</div>'
-      ].join('')
-  }));
 
   // 마커를 한번만 생성하기 위해 useState lazy initialize 사용
   const [marker1] = useState(
@@ -65,8 +24,9 @@ function MyMarkers() {
           url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
           scaledSize: new navermaps.Size(50, 50),
           // origin: new navermaps.Point(0, 0),
-          anchor: new navermaps.Point(50, 50)
-        }
+          anchor: new navermaps.Point(25, 25)
+        },
+        // animation: navermaps.Animation.BOUNCE
       }), 
   )
 
@@ -78,10 +38,18 @@ function MyMarkers() {
           url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
           scaledSize: new navermaps.Size(50, 50),
           // origin: new navermaps.Point(0, 0)
-          anchor: new navermaps.Point(50, 50)
-        }
+          anchor: new navermaps.Point(25, 25)
+        },
+        // animation: navermaps.Animation.BOUNCE
       }),
   )
+
+  var infowindow = new naver.maps.InfoWindow({
+    content: componentString
+  });
+
+
+
 
   // // 마커를 한번만 생성하기 위해 useRef 사용
   // const marker2Ref = useRef(null)
@@ -93,9 +61,22 @@ function MyMarkers() {
   // const marker2 = marker2Ref.current
 
   // hook 으로 이벤트 리스너 등록
-  useListener(marker1, 'click', () => window.alert('서울시청 click'))
-  useListener(marker2, 'click', () => window.alert('덕수궁 click'))
-
+  // useListener(marker1, 'click', () => window.alert('서울시청 click'))
+  useListener(marker1, 'click', function() {
+    if (infowindow.getMap()) {
+        infowindow.close();
+    } else {
+        infowindow.open(naverMap, marker1);
+    }
+  });
+  useListener(marker2, 'click', function() {
+    if (marker2.getAnimation() !== null) {
+      marker2.setAnimation(null);
+    } else {
+      marker2.setAnimation(naver.maps.Animation.BOUNCE);
+    }
+  })
+  
   return (
     <>
       <Overlay element={marker1} />
@@ -106,15 +87,14 @@ function MyMarkers() {
 
 
 function MyMap() {
-  // const navermaps = useNavermaps();
   const navermaps = useNavermaps();
   const { naver } = window;
 
 
   return(
       <NaverMap
-        defaultCenter={new navermaps.LatLng(37.3595704, 127.105399)}
-        defaultZoom={15}
+        defaultCenter={new navermaps.LatLng(37.5657259, 126.97547)}
+        defaultZoom={17}
       >
         <MyMarkers />
           {/* <Marker
@@ -132,112 +112,100 @@ function MyMap() {
   )
 }
 
-// function MarkerCluster() {
-//   // https://github.com/navermaps/marker-tools.js/blob/master/marker-clustering/src/MarkerClustering.js
-//   // 예제에서 제공된 코드를 그대로 사용하되 naver 객체를 주입 받도록 간단히 makeMarkerClustering로 Wrapping 합니다.
-
+// function MyMap() {
+  
 //   const navermaps = useNavermaps()
-//   const map = useMap()
 
-//   // https://github.com/zeakd/react-naver-maps/blob/main/website/src/samples/marker-cluster.js
-//   const MarkerClustering = makeMarkerClustering(window.naver)
+//   // useRef 대신 useState를 통해 ref를 가져옵니다.
+//   const [map, setMap] = useState(null)
+//   const [infowindow, setInfoWindow] = useState(null)
 
-//   const htmlMarker1 = {
-//     content:
-//       '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-1.png);background-size:contain;"></div>',
-//     size: navermaps.Size(40, 40),
-//     anchor: navermaps.Point(20, 20),
-//   }
-//   const htmlMarker2 = {
-//     content:
-//       '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-2.png);background-size:contain;"></div>',
-//     size: navermaps.Size(40, 40),
-//     anchor: navermaps.Point(20, 20),
-//   }
-//   const htmlMarker3 = {
-//     content:
-//       '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-3.png);background-size:contain;"></div>',
-//     size: navermaps.Size(40, 40),
-//     anchor: navermaps.Point(20, 20),
-//   }
-//   const htmlMarker4 = {
-//     content:
-//       '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-4.png);background-size:contain;"></div>',
-//     size: navermaps.Size(40, 40),
-//     anchor: navermaps.Point(20, 20),
-//   }
-//   const htmlMarker5 = {
-//     content:
-//       '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(https://navermaps.github.io/maps.js.ncp/docs/img/cluster-marker-5.png);background-size:contain;"></div>',
-//     size: navermaps.Size(40, 40),
-//     anchor: navermaps.Point(20, 20),
+//   var contentString = [
+//       '<div class="iw_inner">',
+//       '   <h3>서울특별시청</h3>',
+//       '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
+//       '       <img src="https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png" width="55" height="55" alt="서울시청" class="thumb" /><br />',
+//       '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
+//       '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
+//       '   </p>',
+//       '</div>'
+//   ].join('');
+
+//   function onSuccessGeolocation(position) {
+//     if (!map || !infowindow) return
+
+//     const location = new navermaps.LatLng(
+//       position.coords.latitude,
+//       position.coords.longitude,
+//     )
+//     map.setCenter(location)
+//     map.setZoom(10)
+//     infowindow.setContent(contentString)
+//     infowindow.open(map, location)
+//     console.log('Coordinates: ' + location.toString())
 //   }
 
-//   // https://navermaps.github.io/maps.js.ncp/docs/data/accidentdeath.js
-//   const data = accidentDeath.searchResult.accidentDeath
+//   function onErrorGeolocation() {
+//     if (!map || !infowindow) return
 
-//   // Customize Overlay 참고
-//   // https://zeakd.github.io/react-naver-maps/guides/customize-overlays/
-//   const [cluster] = useState(() => {
-//     const markers = []
+//     const center = map.getCenter()
+//     infowindow.setContent(
+//       '<div style="padding:20px;">' +
+//         '<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>' +
+//         'latitude: ' +
+//         center.lat() +
+//         '<br />longitude: ' +
+//         center.lng() +
+//         '</div>',
+//     )
+//     infowindow.open(map, center)
 
-//     for (var i = 0, ii = data.length; i < ii; i++) {
-//       var spot = data[i],
-//         latlng = new navermaps.LatLng(spot.grd_la, spot.grd_lo),
-//         marker = new navermaps.Marker({
-//           position: latlng,
-//           draggable: true,
-//         })
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//         onSuccessGeolocation,
+//         onErrorGeolocation,
+//       )
+//     } else {
+//       const center = map.getCenter()
+//       infowindow.setContent(
+//         '<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>',
+//       )
+//       infowindow.open(map, center)
+//     }
+//   }
 
-//       markers.push(marker)
+//   useEffect(() => {
+//     if (!map || !infowindow) {
+//       return
 //     }
 
-//     const cluster = new MarkerClustering({
-//       minClusterSize: 2,
-//       maxZoom: 8,
-//       map: map,
-//       markers: markers,
-//       disableClickZoom: false,
-//       gridSize: 120,
-//       icons: [
-//         htmlMarker1,
-//         htmlMarker2,
-//         htmlMarker3,
-//         htmlMarker4,
-//         htmlMarker5,
-//       ],
-//       indexGenerator: [10, 100, 200, 500, 1000],
-//       stylingFunction: function (clusterMarker, count) {
-//         // without jquery $(clusterMarker.getElement()).find('div:first-child').text(count)
-//         clusterMarker
-//           .getElement()
-//           .querySelector('div:first-child').innerText = count
-//       },
-//     })
-
-//     return cluster
-//   })
-
-//   return <Overlay element={cluster} />
-// }
-
-// function MyMap() {
-//   const navermaps = useNavermaps()
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//         onSuccessGeolocation,
+//         onErrorGeolocation,
+//       )
+//     } else {
+//       var center = map.getCenter()
+//       infowindow.setContent(
+//         '<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>',
+//       )
+//       infowindow.open(map, center)
+//     }
+//   }, [map, infowindow])
 
 //   return (
 //     <NaverMap
-//       zoom={6}
-//       center={new navermaps.LatLng(36.2253017, 127.6460516)}
-//       zoomControl={true}
-//       zoomControlOptions={{
-//         position: navermaps.Position.TOP_LEFT,
-//         style: navermaps.ZoomControlStyle.SMALL,
-//       }}
+//       // uncontrolled
+//       defaultCenter={new navermaps.LatLng(37.5666805, 126.9784147)}
+//       defaultZoom={10}
+//       defaultMapTypeId={navermaps.MapTypeId.NORMAL}
+//       ref={setMap}
 //     >
-//       <MarkerCluster />
+//       <InfoWindow ref={setInfoWindow} />
 //     </NaverMap>
 //   )
 // }
+
 
 function Map() {
   return (
