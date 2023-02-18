@@ -5,6 +5,7 @@ import { AppService } from './app.service'
 import { AuthModule } from './auth/auth.module'
 import { ConfigModule } from './config/config.module'
 import { ProfileModule } from './profile/profile.module'
+import { CommunityModule } from './community/community.module';
 
 @Module({
     imports: [
@@ -12,6 +13,7 @@ import { ProfileModule } from './profile/profile.module'
         PrismaModule.forRoot({ isGlobal: true }),
         ConfigModule,
         ProfileModule,
+        CommunityModule,
     ],
     controllers: [AppController],
     providers: [AppService],

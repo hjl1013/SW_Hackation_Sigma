@@ -11,42 +11,64 @@ datasource db {
 }
 
 model Community {
-  id    Int    @id @default(autoincrement())
-  commuId Int @unique @default(autoincrement())
+  id Int @id @unique @default(autoincrement())
 
-  commuInfoId  Int @unique
-  commuInfo CommuInfo @relation(fields: [commuInfoId], references: [commuId])
+  commuProfileImgUrl String
+  commuName          String   @unique
+  commuIntro         String
+  commuHT            String[]
+  commuMemberNumber  String
 
-  commuGroupMember User[]
-
-  commuBoard CommuBoard
+  commuThemes CommuTheme[]
 
   @@map("COMMUNITY")
 }
 
-model CommuBoard {
-  id    Int    @id @default(autoincrement())
-  commuId Int @unique @default(autoincrement())
+model CommuTheme {
+  id Int @id @unique @default(autoincrement())
 
-  commuThemeName String[] @unique
-  commuThemeIconImgUrl String
-  commuThemePosts Post[]
+  commuId   Int
+  community Community @relation(fields: [commuId], references: [id])
+
+  commuThemeName    String
+  commuThemeIconUrl String
+
+  posts Post[]
+
+  @@map("COMMU_THEME")
 }
 
-model CommuInfo {
-  id    Int    @id @default(autoincrement())
-  commuId Int @unique @default(autoincrement())
+model Post {
+  id Int @id @default(autoincrement())
 
-  community Community?
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 
-  commuProfileImgUrl String
-  commuName String @unique
-  commuInfo String
-  commuHT String[]
- 
- @@map("COMMU_INFO")
+  commuThemeId Int
+  commuTheme   CommuTheme @relation(fields: [commuThemeId], references: [id])
+
+  ImgUrl         String
+  title          String
+  text           String
+  numberOfHearts Int
+
+  locationId Int      @unique
+  location   Location @relation(fields: [locationId], references: [id])
+
+  @@map("POST")
 }
 
+model Location {
+  id Int @id @default(autoincrement())
+
+  post Post?
+
+  locationName      String @unique
+  locationLatitude  Float
+  locationLongitude Float
+
+  @@map("LOCATION")
+}
 
 model User {
   id    Int    @id @default(autoincrement())
@@ -56,9 +78,8 @@ model User {
   userAuth   UserAuth    @relation(fields: [userAuthId], references: [id])
   profileId  Int         @unique
   profile    UserProfile @relation(fields: [profileId], references: [id])
-  
+
   posts Post[]
-  communities Community[]
 
   @@map("USER")
 }
@@ -78,7 +99,7 @@ model UserProfile {
 
   user User?
 
-  avatarId Int    @unique
+  avatarId Int        @unique
   avatar   UserAvatar @relation(fields: [avatarId], references: [id])
 
   @@map("USER_PROFILE")
@@ -92,13 +113,4 @@ model UserAvatar {
   userProfile UserProfile?
 
   @@map("USER_AVATAR")
-}
-
-model Post {
-  id Int @id @default(autoincrement())
-
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-
-  // implement later
 }

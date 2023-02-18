@@ -2,7 +2,15 @@ import { Post } from '@prisma/client'
 
 export class PostDto implements Post {
     id: number
-    userId: number
 
-    // implement later
+    userId: number
+    
+    commuThemeId: number
+    
+    ImgUrl: string
+    title: string
+    text :string
+    numberOfHearts: number
+    locationId: number
+
 }
