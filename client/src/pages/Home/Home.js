@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css'
 
-import MenuBar from '../../common/components/MenuBar'
+import MenuBar from '../../common/MenuBar/MenuBar'
 import Map from './components/Map'
 import Favorites from './components/Favorites';
 

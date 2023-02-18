@@ -1,9 +1,9 @@
 import React from 'react'
-import MenuBar from '../../common/components/MenuBar'
+import MenuBar from '../../common/MenuBar/MenuBar'
 import './Community.css'
 import CommunitySelect from './components/CommunitySelect/CommunitySelect'
 
-function Community({ communityContent }) {
+function Community() {
     return (
         <div className='community'>
             <div className='community__menuBar'>
@@ -11,7 +11,7 @@ function Community({ communityContent }) {
             </div>
 
             <div className='community__body'>
-                { communityContent === 'select' && <CommunitySelect /> }
+                <CommunitySelect />
             </div>
         </div>
     )

@@ -3,6 +3,7 @@ import './CommunitySelect.css'
 
 import SearchIcon from '@mui/icons-material/Search';
 import CommunityIcon from './components/CommunityIcon/CommunityIcon';
+import { Link } from 'react-router-dom';
 
 function CommunitySelect() {
   return (
@@ -18,30 +19,53 @@ function CommunitySelect() {
         </div>
 
         <div className='communitySelect__communityIcons'>
-            <div className='communitySelect__communityIcon'>
-                <CommunityIcon />
-            </div>
-            <div className='communitySelect__communityIcon'>
-                <CommunityIcon />
-            </div>
-            <div className='communitySelect__communityIcon'>
-                <CommunityIcon />
-            </div>
-            <div className='communitySelect__communityIcon'>
-                <CommunityIcon />
-            </div>
-            <div className='communitySelect__communityIcon'>
-                <CommunityIcon />
-            </div>
-            <div className='communitySelect__communityIcon'>
-                <CommunityIcon />
-            </div>
-            <div className='communitySelect__communityIcon'>
-                <CommunityIcon />
-            </div>
-            <div className='communitySelect__communityIcon'>
-                <CommunityIcon />
-            </div>
+            <Link to='/community/1/home'>
+                <div className='communitySelect__communityIcon'>
+                    <CommunityIcon />
+                </div>
+            </Link>
+
+            <Link to='/community/1/home'>
+                <div className='communitySelect__communityIcon'>
+                    <CommunityIcon />
+                </div>
+            </Link>
+
+            <Link to='/community/1/home'>
+                <div className='communitySelect__communityIcon'>
+                    <CommunityIcon />
+                </div>
+            </Link>
+            
+            <Link to='/community/1/home'>
+                <div className='communitySelect__communityIcon'>
+                    <CommunityIcon />
+                </div>
+            </Link>
+
+            <Link to='/community/1/home'>
+                <div className='communitySelect__communityIcon'>
+                    <CommunityIcon />
+                </div>
+            </Link>
+
+            <Link to='/community/1/home'>
+                <div className='communitySelect__communityIcon'>
+                    <CommunityIcon />
+                </div>
+            </Link>
+
+            <Link to='/community/1/home'>
+                <div className='communitySelect__communityIcon'>
+                    <CommunityIcon />
+                </div>
+            </Link>
+            
+            <Link to='/community/1/home'>
+                <div className='communitySelect__communityIcon'>
+                    <CommunityIcon />
+                </div>
+            </Link>
         </div>
     </div>
   )

@@ -39,6 +39,11 @@
     justify-content: center;
 }
 
+.communitySelect__communityIcons > a {
+    text-decoration: none;
+    color: black;
+}
+
 .communitySelect__communityIcon {
     transition: transform 100ms ease-in;
     margin: 10px;

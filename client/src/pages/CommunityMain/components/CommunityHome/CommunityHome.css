@@ -1,0 +1,46 @@
+.communityHome {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.communityHome__communityProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.communityHome__communityProfileImage > img {
+    width: 200px;
+    height: 200px;
+    border-radius: 999px;
+    border: 8px solid lightgray;
+}
+
+.communityHome__communityProfileInfo {
+    margin-left: 30px;
+}
+
+.communityHome__communityProfileInfo > p {
+    margin-top: 10px;
+}
+
+.communityHome__sectionTitle {
+    background-color: lightgray;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.communityHome__sectionTitle > h2 {
+    text-align: center;
+}
+
+.communityHome__post {
+    margin-top: 10px;
+}

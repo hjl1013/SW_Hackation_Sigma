@@ -1,6 +1,7 @@
 import React from 'react'
 import {HashRouter, Route, Routes} from 'react-router-dom'
 import Community from '../Community/Community'
+import CommunityMain from '../CommunityMain/CommunityMain'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
 
@@ -10,7 +11,8 @@ function AppRouter() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/profile/:profileContent' element={<Profile />} />
-                <Route path='/community' element={<Community communityContent='select'/>} />
+                <Route path='/community' element={<Community />} />
+                <Route path='/community/:communityId/:communityContent' element={<CommunityMain />} />
             </Routes>
         </HashRouter>
     )
