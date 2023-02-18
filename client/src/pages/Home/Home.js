@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Home.css'
+import { NavermapsProvider } from 'react-naver-maps'
 
 import MenuBar from '../../common/components/MenuBar'
 import Map from './components/Map'
@@ -18,7 +19,7 @@ function Home() {
             </div>
 
             <div className='home__map'>
-                <Map zoom={zoom}/>
+                <Map />
             </div>
 
             <div className='home__floating'>
