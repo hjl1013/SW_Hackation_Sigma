@@ -1,7 +1,8 @@
 import React from 'react'
-import {HashRouter, Route, Routes} from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import Community from '../Community/Community'
 import CommunityMain from '../CommunityMain/CommunityMain'
+import MapTest from '../Home/components/MapTest/MapTest'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
 
