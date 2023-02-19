@@ -1,6 +1,6 @@
 import React from 'react'
 import {HashRouter, Route, Routes} from 'react-router-dom'
-import MapTest from '../Home/components/MapTest'
+import MapTest from '../Home/components/MapTest/MapTest'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
 
