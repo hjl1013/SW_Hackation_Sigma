@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import MenuBar from '../../common/components/MenuBar';
+import './Home.css'
+
+import MenuBar from '../../common/MenuBar/MenuBar';
 import Favorites from './components/Favorites/Favorites';
 import Map from './components/Map/Map';
 import Chatting from './components/Chatting/Chatting'
 import ZoomButton from './components/ZoomButton/ZoomButton'
-import './Home.css'
 
 
 function Home() {
