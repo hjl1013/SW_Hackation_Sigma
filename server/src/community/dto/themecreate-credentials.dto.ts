@@ -1,6 +1,6 @@
-import { IsArray, IsNotEmpty, IsString } from "class-validator"
+import {  IsNotEmpty, IsString } from "class-validator"
 
-export class ThemeCredentialsDto {
+export class ThemecreateCredentialsDto {
     @IsNotEmpty()
     @IsString()
     commuThemeName: string
@@ -8,4 +8,5 @@ export class ThemeCredentialsDto {
     @IsNotEmpty()
     @IsString()
     commuThemeIconUrl: string
+
 }

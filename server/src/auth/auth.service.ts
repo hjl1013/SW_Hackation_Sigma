@@ -8,6 +8,7 @@ import { ConfigService } from '../config/config.service'
 import { LoginCredentialsDto } from './dto/login-credentials.dto'
 import { SignUpCredentialsDto } from './dto/sign-up-credentials.dto'
 import { JWTPayload } from './models/JWTPayload'
+import { DesCredentialsDto } from '../location/dto/des-credentials.dto'
 
 @Injectable()
 export class AuthService {
@@ -44,6 +45,9 @@ export class AuthService {
                         },
                     },
                 },
+                destinationName: "",
+                destinationLatitude: 0,
+                destinationLongitude: 0,
             },
             update: {
                 userAuth: {

@@ -52,22 +52,11 @@ model Post {
   text           String
   numberOfHearts Int
 
-  locationId Int      @unique
-  location   Location @relation(fields: [locationId], references: [id])
-
-  @@map("POST")
-}
-
-model Location {
-  id Int @id @default(autoincrement())
-
-  post Post?
-
-  locationName      String @unique
+  locationName      String
   locationLatitude  Float
   locationLongitude Float
 
-  @@map("LOCATION")
+  @@map("POST")
 }
 
 model User {
@@ -80,6 +69,10 @@ model User {
   profile    UserProfile @relation(fields: [profileId], references: [id])
 
   posts Post[]
+
+  destinationName      String @unique
+  destinationLatitude  Float
+  destinationLongitude Float
 
   @@map("USER")
 }

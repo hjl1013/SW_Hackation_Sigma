@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module'
 import { ConfigModule } from './config/config.module'
 import { ProfileModule } from './profile/profile.module'
 import { CommunityModule } from './community/community.module';
+import { LocationModule } from './location/location.module';
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import { CommunityModule } from './community/community.module';
         ConfigModule,
         ProfileModule,
         CommunityModule,
+        LocationModule,
     ],
     controllers: [AppController],
     providers: [AppService],

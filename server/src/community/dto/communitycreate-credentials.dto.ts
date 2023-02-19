@@ -1,6 +1,6 @@
 import { IsArray, IsNotEmpty, IsString } from "class-validator"
 
-export class CommunityCredentialsDto {
+export class CommunitycreateCredentialsDto {
     @IsNotEmpty()
     @IsString()
     commuProfileImgUrl: string

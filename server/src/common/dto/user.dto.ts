@@ -7,7 +7,8 @@ export class UserDto implements User {
     email: string
     userAuthId: number
     profileId: number
+    destinationName: string
+    destinationLatitude: number
+    destinationLongitude: number
 
-    profile: UserProfileDto
-    posts: Array<PostDto>
 }

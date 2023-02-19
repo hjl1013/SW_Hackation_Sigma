@@ -1,6 +1,6 @@
 import { Post } from '@prisma/client'
 
-export class PostDto implements Post {
+export class PostDto implements Post{
     id: number
 
     userId: number
@@ -11,6 +11,8 @@ export class PostDto implements Post {
     title: string
     text :string
     numberOfHearts: number
-    locationId: number
 
+    locationName: string
+    locationLatitude: number
+    locationLongitude: number
 }
