@@ -1,0 +1,57 @@
+.myProfile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+}
+
+.myProfile__profileImage {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.myProfile__profileImage > img {
+    border-radius: 999px;
+    width: 150px;
+    border: 8px solid lightgray;
+    margin: 10px;
+}
+
+.myProfile__header {
+    padding: 10px;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.myProfile__header > h2 {
+    text-align: center;
+}
+
+.myProfile__avatars {
+    display: flex;
+    margin-top: 10px;
+}
+
+.myProfile__avatar--human {
+    margin-right: 5px;
+}
+
+.myProfile__avatar--car {
+    margin-left: 5px;
+}
+
+.myProfile__sectionTitle {
+    background-color: lightgray;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.myProfile__sectionTitle > h2 {
+    text-align: center;
+}
+
+.myProfile__post {
+    margin-top: 10px;
+}

@@ -1,0 +1,35 @@
+.favorites__icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    z-index: 999;
+    margin: 10px;
+    margin-right: 50px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 99px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.75);
+    transition: transform 100ms ease-in;
+}
+
+.favorites__icon > .MuiSvgIcon-root {
+    font-size: xx-large;
+}
+
+.favorites__icon:hover {
+    transform: scale(1.07);
+}
+
+.favorites__popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 120px;
+    width: 200px;
+    background-color: #fff;
+    transition: transform 0.3s ease-out;
+    z-index: 999;
+}
