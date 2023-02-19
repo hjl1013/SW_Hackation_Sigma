@@ -4,7 +4,7 @@ import './Map.css'
 import { Container as MapDiv, NaverMap, Marker, useNavermaps, useMap, useListener, Listener, Overlay, NavermapsProvider, InfoWindow } from 'react-naver-maps'
 import { makeMarkerClustering } from './makeMarkerClustering'
 import accidentDeath from './accidentDeath'
-import Popup from './Popup'
+import Popup from '../Popup/Popup'
 
 
 function MyMarkers() {
@@ -48,9 +48,6 @@ function MyMarkers() {
     content: componentString
   });
 
-
-
-
   // // 마커를 한번만 생성하기 위해 useRef 사용
   // const marker2Ref = useRef(null)
   // if (!marker2Ref.current) {
@@ -75,7 +72,20 @@ function MyMarkers() {
     } else {
       marker2.setAnimation(naver.maps.Animation.BOUNCE);
     }
-  })
+  });
+
+  useListener(naverMap, 'click', function(e) {
+    new naver.maps.Marker({  // point에 마커를 표시함
+        map: naverMap,
+        position: e.latlng,
+        icon: {
+          url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
+          scaledSize: new navermaps.Size(50, 50),
+          // origin: new navermaps.Point(0, 0)
+          anchor: new navermaps.Point(25, 25)
+        }
+    });
+  });
   
   return (
     <>

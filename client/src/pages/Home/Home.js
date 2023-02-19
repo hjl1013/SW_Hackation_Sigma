@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
+import MenuBar from '../../common/components/MenuBar';
+import Favorites from './components/Favorites/Favorites';
+import Map from './components/Map/Map';
+import Chatting from './components/Chatting/Chatting'
+import ZoomButton from './components/ZoomButton/ZoomButton'
 import './Home.css'
-import { NavermapsProvider } from 'react-naver-maps'
 
-import MenuBar from '../../common/components/MenuBar'
-import Map from './components/Map'
-import Favorites from './components/Favorites';
-import Chatting from './components/Chatting';
-import ZoomButton from './components/ZoomButton';
 
 function Home() {
     const [zoom, setZoom] = useState(17);
