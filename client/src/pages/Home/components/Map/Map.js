@@ -4,7 +4,7 @@ import './Map.css'
 import { Container as MapDiv, NaverMap, Marker, useNavermaps, useMap, useListener, Listener, Overlay, NavermapsProvider, InfoWindow } from 'react-naver-maps'
 import { makeMarkerClustering } from './makeMarkerClustering'
 import accidentDeath from './accidentDeath'
-import Popup from './Popup'
+import Popup from '../Popup/Popup'
 
 
 function MyMarkers() {
