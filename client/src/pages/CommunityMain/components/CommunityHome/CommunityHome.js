@@ -1,3 +1,4 @@
+import { Button } from '@mui/material'
 import React from 'react'
 import Post from '../../../../common/Post/Post'
 import './CommunityHome.css'
@@ -12,6 +13,7 @@ function CommunityHome() {
                 <div className='communityHome__communityProfileInfo'>
                     <h1>Trip</h1>
                     <p>Lets go on a trip!!</p>
+                    <Button>Join</Button>
                 </div>
             </div>
 
@@ -28,7 +30,7 @@ function CommunityHome() {
                 <div className='communityHome__post'>
                     <Post />
                 </div>
-                
+
                 <div className='communityHome__sectionTitle'>
                     <h2>Hot Posts</h2>
                 </div>

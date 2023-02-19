@@ -4,6 +4,8 @@ import MenuBar from '../../common/MenuBar/MenuBar'
 import CommunityBar from './components/CommunityBar/CommunityBar'
 import { useParams } from 'react-router-dom'
 import CommunityHome from './components/CommunityHome/CommunityHome'
+import CommunityPosts from './components/CommunityPosts/CommunityPosts'
+import CommunityMetaChat from './components/CommunityMetaChat/CommunityMetaChat'
 
 function CommunityMain() {
     const { communityId, communityContent } = useParams()
@@ -16,6 +18,8 @@ function CommunityMain() {
 
             <div className='communityMain__body'>
                 { communityContent === 'home' && <CommunityHome /> }
+                { communityContent === 'posts' && <CommunityPosts /> }
+                { communityContent === 'metaChat' && <CommunityMetaChat /> }
             </div>
 
             <div className='communityMain__communityBar'>
