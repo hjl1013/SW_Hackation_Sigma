@@ -1,5 +1,5 @@
 import { Community } from '@prisma/client'
-import { CommuThemeDto } from './commutheme.dto';
+import { CommuThemeForGetCommunityDto } from './commutheme.dto';
 
 export class CommunityDto implements Community{
     id: number;
@@ -9,4 +9,8 @@ export class CommunityDto implements Community{
     commuIntro: string;
     commuHT: string[];
     commuMemberNumber: string;
+}
+
+export class GetCommunityDto extends CommunityDto{
+    commuThemes: Array<CommuThemeForGetCommunityDto>;
 }

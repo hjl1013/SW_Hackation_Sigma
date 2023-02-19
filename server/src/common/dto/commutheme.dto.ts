@@ -1,5 +1,6 @@
 import { CommuTheme } from "@prisma/client";
-import { PostDto } from "./post.dto";
+import { CommunityDto } from "./community.dto";
+import { PostForGetCommunityDto } from "./post.dto";
 
 export class CommuThemeDto implements CommuTheme{
     id: number;
@@ -7,4 +8,12 @@ export class CommuThemeDto implements CommuTheme{
     commuThemeName: string;
     commuThemeIconUrl: string;
 
+}
+
+export class CommuThemeWithCommunityDto extends CommuThemeDto{
+    community: CommunityDto;
+}
+
+export class CommuThemeForGetCommunityDto extends CommuThemeDto{
+    posts: Array<PostForGetCommunityDto>;
 }

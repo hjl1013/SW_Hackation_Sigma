@@ -3,6 +3,7 @@ import { User } from '@prisma/client';
 import { DesCredentialsDto } from 'src/location/dto/des-credentials.dto';
 import { ExtractUser } from 'src/utility/decorators/extract-user.decorator';
 import { LocationService } from './location.service';
+import { UserDto } from 'src/common/dto/user.dto';
 
 @Controller('location')
 export class LocationController {
@@ -12,7 +13,7 @@ export class LocationController {
     setUpDestination(
         @ExtractUser() user: User,
         @Body() desCredentialsDto: DesCredentialsDto
-    ) {
+    ): Promise<UserDto> {
         return this.locationService.setUpDestination(user, desCredentialsDto);
     }
 }
