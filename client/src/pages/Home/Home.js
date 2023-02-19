@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import MenuBar from '../../common/components/MenuBar';
+import Favorites from './components/Favorites/Favorites';
+import Map from './components/Map/Map';
+import Chatting from './components/Chatting/Chatting'
+import ZoomButton from './components/ZoomButton/ZoomButton'
 import './Home.css'
 
-import MenuBar from '../../common/components/MenuBar'
-import Map from './components/Map'
-import Favorites from './components/Favorites';
 
 function Home() {
+    const [zoom, setZoom] = useState(17);
+
+
     return (
         <div className='home'>
             <div className='home__menuBar'>
@@ -17,11 +22,16 @@ function Home() {
             </div>
 
             <div className='home__floating'>
-                <Favorites />
+                <Favorites />   
+                <Chatting />
                 {/* Favorites */}
                 {/* Chatting */}
             </div>
 
+            <div className='home__zoom'>
+                <ZoomButton zoom={zoom} onValueChange={setZoom}/>
+                {/* ZoomButton */}
+            </div>
         </div>
     )
 }
