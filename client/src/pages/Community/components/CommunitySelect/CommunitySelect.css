@@ -7,7 +7,7 @@
 
 .communitySelect__search {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .communitySelect__searchInput {
@@ -30,6 +30,18 @@
 
 .communitySelect__searchInput > form > button {
     display: none;
+}
+
+.communitySelect__createButton {
+    height: 100%;
+}
+
+.communitySelect__createButton > button {
+    border-radius: 999px;
+    background-color: lightgray;
+    color: black;
+    margin-left: 10px;
+    height: 100%;
 }
 
 .communitySelect__communityIcons {

@@ -3,7 +3,9 @@ import './CommunitySelect.css'
 
 import SearchIcon from '@mui/icons-material/Search';
 import CommunityIcon from './components/CommunityIcon/CommunityIcon';
+import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function CommunitySelect() {
   return (
@@ -16,6 +18,13 @@ function CommunitySelect() {
                     <button type='submit'>Hidden Submit</button>
                 </form>
             </div>
+            <Link to='/community/create'>
+                <div className='communitySelect__createButton'>
+                    <Button>
+                        <AddIcon />
+                    </Button>
+                </div>
+            </Link>
         </div>
 
         <div className='communitySelect__communityIcons'>

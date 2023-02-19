@@ -11,7 +11,7 @@ function AppRouter() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/profile/:profileContent' element={<Profile />} />
-                <Route path='/community' element={<Community />} />
+                <Route path='/community/:option' element={<Community />} />
                 <Route path='/community/:communityId/:communityContent' element={<CommunityMain />} />
             </Routes>
         </HashRouter>

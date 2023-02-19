@@ -26,7 +26,7 @@ function MenuBar({ page }) {
                 </div>
             </Link>
 
-            <Link to='/community'>
+            <Link to='/community/select'>
                 <div className={`menuBar__item ${ page === 'community' && 'menuBar__item--active' }`}>
                     <PeopleIcon />
                     <h4>Community</h4>
