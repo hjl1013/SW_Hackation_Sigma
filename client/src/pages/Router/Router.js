@@ -12,6 +12,7 @@ function AppRouter() {
                 <Route path='/profile' element={<Profile profileContent='myProfile'/>}>
                     <Route path='/profile/myProfile' element={<Profile profileContent='myProfile'/>} />
                 </Route>
+                <Route path='/settings' element={<MapTest />} />
             </Routes>
         </HashRouter>
     )
