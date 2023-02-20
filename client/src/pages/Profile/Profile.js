@@ -1,10 +1,12 @@
 import React from 'react'
 import './Profile.css'
-import MenuBar from '../../common/components/MenuBar'
+import MenuBar from '../../common/MenuBar/MenuBar'
 import ProfileBar from './components/ProfileBar/ProfileBar'
 import MyProfile from './components/MyProfile/MyProfile'
+import { useParams } from 'react-router-dom'
 
-function Profile({ profileContent }) {
+function Profile() {
+    const { profileContent }  = useParams();
 
     return (
         <div className='profile'>

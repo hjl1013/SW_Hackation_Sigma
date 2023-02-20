@@ -1,0 +1,39 @@
+.communityPosts {
+    width: 600px;
+}
+
+.communityPosts__communityProfile {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.communityPosts__communityProfileImage > img {
+    width: 80px;
+    height: 80px;
+    border-radius: 999px;
+    border: 8px solid lightgray;
+}
+
+.communityPosts__communityProfileInfo {
+    margin-left: 10px;
+}
+
+.communityPosts__communityContent {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.communityPosts__themes {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.communityPosts__theme > .MuiButton-root{
+    background-color: white;
+    margin-right: 10px;
+}
+
+.communityPosts__post {
+    margin-top: 10px;
+}

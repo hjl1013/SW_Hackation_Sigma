@@ -1,0 +1,47 @@
+.menuBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 95vh;
+    width: 200px;
+    position: absolute;
+
+    top: 2.5vh;
+    left: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 3px 5px 10px -3px rgba(0, 0, 0, 0.75);
+}
+
+.menuBar > a {
+    text-decoration: none;
+}
+
+.menuBar__item {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 15px;
+    color: black;
+    transition: transform 100ms ease-in;
+}
+
+.menuBar__item:hover {
+    cursor: pointer;
+    transform: scale(1.07);
+}
+
+.menuBar__item >  h4 {
+    margin-left: 5px;
+}
+
+.menuBar__item > .MuiSvgIcon-root {
+    font-size: xx-large;
+}
+
+.menuBar__item--active > .MuiSvgIcon-root {
+    color: #2e81f4;
+}
+
+.menuBar__item--active > h4 {
+    color: #2e81f4;
+}
