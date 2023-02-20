@@ -6,20 +6,23 @@ import { useParams } from 'react-router-dom'
 import CommunityHome from './components/CommunityHome/CommunityHome'
 import CommunityPosts from './components/CommunityPosts/CommunityPosts'
 import CommunityMetaChat from './components/CommunityMetaChat/CommunityMetaChat'
+import CommunityMap from './components/CommunityMap/CommunityMap'
 
 function CommunityMain() {
     const { communityId, communityContent } = useParams()
 
     return (
         <div className='communityMain'>
-            <div className='communityMain__menuBar'>
-                <MenuBar page='community' />
-            </div>
 
             <div className='communityMain__body'>
                 { communityContent === 'home' && <CommunityHome /> }
                 { communityContent === 'posts' && <CommunityPosts /> }
                 { communityContent === 'metaChat' && <CommunityMetaChat /> }
+                { communityContent === 'map' && <CommunityMap /> }
+            </div>
+            
+            <div className='communityMain__menuBar'>
+                <MenuBar page='community' />
             </div>
 
             <div className='communityMain__communityBar'>
