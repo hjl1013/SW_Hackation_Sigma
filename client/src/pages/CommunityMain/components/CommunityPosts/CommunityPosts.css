@@ -34,6 +34,18 @@
     margin-right: 10px;
 }
 
+.communityPosts__createPostButton {
+    margin-bottom: 10px;
+}
+
+.communityPosts__createPostButton > button > h4 {
+    margin-left: 5px;
+}
+
+.communityPosts__createPostBox {
+    transition: 300ms;
+}
+
 .communityPosts__post {
     margin-top: 10px;
 }

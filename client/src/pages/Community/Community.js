@@ -4,9 +4,13 @@ import MenuBar from '../../common/MenuBar/MenuBar'
 import './Community.css'
 import CommunityCreate from './components/CommunityCreate/CommunityCreate'
 import CommunitySelect from './components/CommunitySelect/CommunitySelect'
+import { CommunityAPIImpl } from '../../lib/infrastructure/CommunityAPIImpl'
 
 function Community() {
     const { option } = useParams();
+
+    
+    console.log(CommunityAPIImpl.getCommunities())
 
     return (
         <div className='community'>

@@ -28,6 +28,10 @@ export class CommunityService {
         return newCommunity;
     }
 
+    async getAllCommunities(): Promise<Array<CommunityDto>> {
+        return this.prisma.community.findMany();
+    }
+
     async createCommuTheme(commuId: number, themecreateCredentialsDto: ThemecreateCredentialsDto): Promise<CommuThemeWithCommunityDto> {
         const {commuThemeName, commuThemeIconUrl } = themecreateCredentialsDto;
 
