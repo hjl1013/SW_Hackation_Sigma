@@ -1,5 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { Container as MapDiv, Marker, NaverMap, Overlay, useMap, useNavermaps } from 'react-naver-maps';
+import ReactDOMServer from 'react-dom/server'
+import Popup from 'D:/SW_Hackation_Sigma/client/src/pages/Home/components/Popup/Popup'
 
 function MyMap() {
     const navermaps = useNavermaps();
@@ -92,15 +94,28 @@ function MyMap() {
                 },
                 zIndex: 100
             });
+
+            // {title, username, message, image, likes}
+            const componentString = ReactDOMServer.renderToString(
+                <Popup
+                    title='현대모비스 해커톤 준비!!'
+                    username='SamSam'
+                    message='동아리 대표로 나온 이번 해커톤에서 동아리 이름도 빛내고 학교 이름도 빛내보자! 아자아자~~'
+                    image={'https://www.hyundai.co.kr/image/upload/asset_library/MDA00000000000015710/4754f2b0f8dd4e8db46ee6e39288f987.jpg'}
+                    likes={99}
+                />
+            );
         
             const infoWindow = new navermaps.InfoWindow({
-                content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ key.substr(0, 1) +'"</b>.</div>'
+                // content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ key +'"</b>.</div>'
+                content: componentString
             });
             
             markers.push(marker);
             infoWindows.push(infoWindow);
         };
     }
+
 
     if(map){
         navermaps.Event.addListener(map, 'idle', function() {
@@ -150,6 +165,13 @@ function MyMap() {
             } else {
                 infoWindow.open(map, marker);
             }
+
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(navermaps.Animation.BOUNCE);
+            }
+
         }
     }
 

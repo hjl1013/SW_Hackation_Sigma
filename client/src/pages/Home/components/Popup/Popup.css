@@ -56,7 +56,8 @@
 }
 
 .popup__option > p {
-    margin-left: 10px;
+    margin-left: 5px;
+    /* margin-right: 10px; */
 }
 
 .popup__option:hover {
