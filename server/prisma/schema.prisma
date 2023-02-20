@@ -10,6 +10,55 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Community {
+  id Int @id @unique @default(autoincrement())
+
+  commuProfileImgUrl String
+  commuName          String   @unique
+  commuIntro         String
+  commuHT            String[]
+  commuMemberNumber  String
+
+  commuThemes CommuTheme[]
+
+  @@map("COMMUNITY")
+}
+
+model CommuTheme {
+  id Int @id @unique @default(autoincrement())
+
+  commuId   Int
+  community Community @relation(fields: [commuId], references: [id])
+
+  commuThemeName    String
+  commuThemeIconUrl String
+
+  posts Post[]
+
+  @@map("COMMU_THEME")
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  commuThemeId Int
+  commuTheme   CommuTheme @relation(fields: [commuThemeId], references: [id])
+
+  ImgUrl         String
+  title          String
+  text           String
+  numberOfHearts Int
+
+  locationName      String
+  locationLatitude  Float
+  locationLongitude Float
+
+  @@map("POST")
+}
+
 model User {
   id    Int    @id @default(autoincrement())
   email String @unique
@@ -18,8 +67,12 @@ model User {
   userAuth   UserAuth    @relation(fields: [userAuthId], references: [id])
   profileId  Int         @unique
   profile    UserProfile @relation(fields: [profileId], references: [id])
-  
+
   posts Post[]
+
+  destinationName      String @unique
+  destinationLatitude  Float
+  destinationLongitude Float
 
   @@map("USER")
 }
@@ -39,7 +92,7 @@ model UserProfile {
 
   user User?
 
-  avatarId Int    @unique
+  avatarId Int        @unique
   avatar   UserAvatar @relation(fields: [avatarId], references: [id])
 
   @@map("USER_PROFILE")
@@ -53,12 +106,4 @@ model UserAvatar {
   userProfile UserProfile?
 
   @@map("USER_AVATAR")
-}
-
-model Post {
-  id Int @id @default(autoincrement())
-
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  // implement later
 }

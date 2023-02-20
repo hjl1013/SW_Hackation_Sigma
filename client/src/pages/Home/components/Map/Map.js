@@ -75,10 +75,6 @@ function MyMarkers() {
     }
   });
 
-  var infowindow_temp = new naver.maps.InfoWindow({
-    content: '<h1>Fishing!</h1>'
-  });
-
   useListener(naverMap, 'click', function(e) {
     new naver.maps.Marker({  // point에 마커를 표시함
         map: naverMap,
@@ -91,7 +87,6 @@ function MyMarkers() {
         }
     });
   });
-
   
   return (
     <>

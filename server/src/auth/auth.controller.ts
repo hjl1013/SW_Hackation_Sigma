@@ -1,4 +1,4 @@
-import { Body, Controller, ForbiddenException, Post, Res } from '@nestjs/common'
+import { Body, Controller, ForbiddenException, Patch, Post, Res } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { Response } from 'express'
 import { ApiTags } from '@nestjs/swagger'
@@ -7,6 +7,9 @@ import { Public } from '../utility/decorators/public.decorator'
 import { ConfigService } from '../config/config.service'
 import { SignUpCredentialsDto } from './dto/sign-up-credentials.dto'
 import { UserDto } from 'src/common/dto/user.dto'
+import { DesCredentialsDto } from '../location/dto/des-credentials.dto'
+import { User } from '@prisma/client'
+import { ExtractUser } from 'src/utility/decorators/extract-user.decorator'
 
 @Controller('auth')
 @ApiTags('auth')
@@ -45,7 +48,9 @@ export class AuthController {
 
     @Public()
     @Post('sign-up')
-    async signUp(@Body() signUpCredentials: SignUpCredentialsDto): Promise<UserDto> {
-        return this.authService.signUp(signUpCredentials);
+    async signUp(
+        @Body() signUpCredentials: SignUpCredentialsDto,
+    ): Promise<UserDto> {
+        return this.authService.signUp(signUpCredentials)
     }
 }
