@@ -1,0 +1,37 @@
+.communityBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 95vh;
+    width: 200px;
+    position: absolute;
+    top: 2.5vh;
+    right: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 3px 5px 10px -3px rgba(0, 0, 0, 0.75);
+}
+
+.communityBar > a {
+    text-decoration: none;
+}
+
+.communityBar__item {
+    align-items: center;
+    padding: 10px 15px 10px 10px;
+    color: black;
+    transition: transform 100ms ease-in;
+}
+
+.communityBar__item > h4 {
+    text-align: end;
+}
+
+.communityBar__item:hover {
+    cursor: pointer;
+    transform: scale(1.07);
+}
+
+.communityBar__item--active {
+    color: #2e81f4;
+}

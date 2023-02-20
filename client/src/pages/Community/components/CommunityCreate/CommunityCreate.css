@@ -1,0 +1,168 @@
+.communityCreate {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+}
+
+.communityCreate__title{
+    /* margin-top: 30px; */
+    margin-bottom: 20px;
+}
+
+.communityCreate__communityInfo {
+    display: flex;
+    padding-bottom: 30px;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.communityCreate__communityImage {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.communityCreate__communityImage > input {
+    display: none;
+}
+
+.communityCreate__communityImage > label {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.communityCreate__communityImage > label > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.communityCreate__communityImage > label > .MuiSvgIcon-root {
+    background-color: #2e81f4;
+    border-radius: 999px;
+    padding: 10px;
+    color: white;
+}
+
+.communityCreate__textInputs {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.communityCreate__textInput {
+    margin-bottom: 10px;
+}
+
+.communityCreate__textInput > h2 {
+    margin-bottom: 10px;
+}
+
+.communityCreate__textInputBox {
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.communityCreate__textInputBox > input {
+    background-color: transparent;
+    outline-width: 0;
+    border: none;
+    width: 400px;
+}
+
+.communityCreate__sectionTitle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.communityCreate__themeInfo {
+    margin-bottom: 20px;
+}
+
+.communityCreate__themes {
+    display: flex;
+}
+
+.communityCreate__theme {
+    display: flex;
+    align-items: center;
+    background-color: lightgray;
+    border-radius: 999px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.communityCreate__theme > img {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+}
+
+.communityCreate__theme > h4 {
+    margin-left: 8px;
+    margin-right: 8px;
+    /* font-weight: 400; */
+}
+
+.communityCreate__createTheme {
+    display: flex;
+    background-color: lightgray;
+    border-radius: 999px;
+    padding: 5px;
+    align-items: center;
+}
+
+.communityCreate__createTheme > form {
+    display: flex;
+    align-items: center;
+}
+
+.communityCreate__createTheme > form > button {
+    display: none;
+}
+
+.communityCreate__createTheme > form > input {
+    border: none;
+    outline-width: 0;
+    background-color: transparent;
+    margin-left: 8px;
+    margin-right: 5px;
+    width: 82px;
+}
+
+.communityCreate__createThemeIcon > label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 999px;
+    width: 30px;
+    height: 30px;
+}
+
+.communityCreate__createThemeIcon > label > img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 999px;
+    width: 30px;
+    height: 30px;
+}
+
+.communityCreate__createThemeIcon > label > .MuiSvgIcon-root {
+    color: lightgray;
+}
+
+.communityCreate__createThemeIcon > input {
+    display: none;
+}
+
+.communityCreate > a {
+    text-decoration: none;
+}
