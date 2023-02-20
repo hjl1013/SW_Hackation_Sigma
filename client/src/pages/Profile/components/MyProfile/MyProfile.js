@@ -1,6 +1,6 @@
 import React from 'react'
 import Avatar from './components/Avatar/Avatar'
-import Post from './components/Post/Post'
+import Post from '../../../../common/Post/Post'
 import './MyProfile.css'
 
 function MyProfile() {

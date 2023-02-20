@@ -1,0 +1,30 @@
+.communityIcon {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.communityIcon__image {
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.communityIcon__image > img {
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+.communityIcon__info {
+    margin: 10px;
+}
+
+.communityIcon__info > h2 {
+    text-align: center;
+}
+
+.communityIcon__info > p {
+    text-align: center;
+}

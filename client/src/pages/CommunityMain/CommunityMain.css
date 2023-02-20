@@ -1,0 +1,15 @@
+.communityMain {
+    background-color: #f1f2f5;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.communityMain__menuBar {
+    position: fixed;
+    left: 0px;
+}
+
+.communityMain__communityBar {
+    position: fixed;
+    right: 0px;
+}

@@ -1,0 +1,38 @@
+.communityMetaChat {
+    width: 800px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.communityMetaChat__communityProfile {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.communityMetaChat__communityProfileImage > img {
+    width: 80px;
+    height: 80px;
+    border-radius: 999px;
+    border: 8px solid lightgray;
+}
+
+.communityMetaChat__communityProfileInfo {
+    margin-left: 10px;
+}
+
+.communityMetaChat__communityContent {
+    margin-top: 20px;
+}
+
+.communityMetaChat__unityEmbedding {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.communityMetaChat__unityEmbedding > canvas {
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
