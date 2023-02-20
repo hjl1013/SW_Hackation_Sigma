@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import { Container as MapDiv, NaverMap, useNavermaps } from 'react-naver-maps';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 function MapTest() {

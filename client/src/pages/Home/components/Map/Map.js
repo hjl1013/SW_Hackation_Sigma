@@ -4,97 +4,98 @@ import './Map.css'
 import { Container as MapDiv, NaverMap, Marker, useNavermaps, useMap, useListener, Listener, Overlay, NavermapsProvider, InfoWindow } from 'react-naver-maps'
 import { makeMarkerClustering } from './makeMarkerClustering'
 import accidentDeath from './accidentDeath'
-import Popup from './Popup'
+// import Popup from './Popup'
 import $ from 'jquery';
+import FlagIcon from '@mui/icons-material/Flag';
 
 
-function MyMarkers() {
-  const navermaps = useNavermaps()
-  const { naver } = window;
-  const naverMap = useMap();
+// function MyMarkers() {
+//   const navermaps = useNavermaps()
+//   const { naver } = window;
+//   const naverMap = useMap();
 
-  const componentString = ReactDomServer.renderToString(<Popup />)
+  // const componentString = ReactDomServer.renderToString(<Popup />)
 
 
-  // 마커를 한번만 생성하기 위해 useState lazy initialize 사용
-  const [marker1] = useState(
-    () =>
-      new navermaps.Marker({
-        position: { lat: 37.5666103, lng: 126.9783882 },
-        icon: {
-          url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
-          scaledSize: new navermaps.Size(50, 50),
-          // origin: new navermaps.Point(0, 0),
-          anchor: new navermaps.Point(25, 25)
-        },
-        // animation: navermaps.Animation.BOUNCE
-      }), 
-  )
+//   // 마커를 한번만 생성하기 위해 useState lazy initialize 사용
+//   const [marker1] = useState(
+//     () =>
+//       new navermaps.Marker({
+//         position: { lat: 37.5666103, lng: 126.9783882 },
+//         icon: {
+//           url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
+//           scaledSize: new navermaps.Size(50, 50),
+//           // origin: new navermaps.Point(0, 0),
+//           anchor: new navermaps.Point(25, 25)
+//         },
+//         // animation: navermaps.Animation.BOUNCE
+//       }), 
+//   )
 
-  const [marker2] = useState(
-    () =>
-      new navermaps.Marker({
-        position: { lat: 37.5657259, lng: 126.97547 },
-        icon: {
-          url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
-          scaledSize: new navermaps.Size(50, 50),
-          // origin: new navermaps.Point(0, 0)
-          anchor: new navermaps.Point(25, 25)
-        },
-        // animation: navermaps.Animation.BOUNCE
-      }),
-  )
+//   const [marker2] = useState(
+//     () =>
+//       new navermaps.Marker({
+//         position: { lat: 37.5657259, lng: 126.97547 },
+//         icon: {
+//           url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
+//           scaledSize: new navermaps.Size(50, 50),
+//           // origin: new navermaps.Point(0, 0)
+//           anchor: new navermaps.Point(25, 25)
+//         },
+//         // animation: navermaps.Animation.BOUNCE
+//       }),
+//   )
 
-  var infowindow = new naver.maps.InfoWindow({
-    content: componentString
-  });
+//   var infowindow = new naver.maps.InfoWindow({
+//     content: componentString
+//   });
 
-  // // 마커를 한번만 생성하기 위해 useRef 사용
-  // const marker2Ref = useRef(null)
-  // if (!marker2Ref.current) {
-  //   marker2Ref.current = new navermaps.Marker({
-  //     position: { lat: 37.5657259, lng: 126.97547 },
-  //   })
-  // }
-  // const marker2 = marker2Ref.current
+//   // // 마커를 한번만 생성하기 위해 useRef 사용
+//   // const marker2Ref = useRef(null)
+//   // if (!marker2Ref.current) {
+//   //   marker2Ref.current = new navermaps.Marker({
+//   //     position: { lat: 37.5657259, lng: 126.97547 },
+//   //   })
+//   // }
+//   // const marker2 = marker2Ref.current
 
-  // hook 으로 이벤트 리스너 등록
-  // useListener(marker1, 'click', () => window.alert('서울시청 click'))
-  useListener(marker1, 'click', function() {
-    if (infowindow.getMap()) {
-        infowindow.close();
-    } else {
-        infowindow.open(naverMap, marker1);
-    }
-  });
-  useListener(marker2, 'click', function() {
-    if (marker2.getAnimation() !== null) {
-      marker2.setAnimation(null);
-    } else {
-      marker2.setAnimation(naver.maps.Animation.BOUNCE);
-    }
-  });
+//   // hook 으로 이벤트 리스너 등록
+//   // useListener(marker1, 'click', () => window.alert('서울시청 click'))
+//   useListener(marker1, 'click', function() {
+//     if (infowindow.getMap()) {
+//         infowindow.close();
+//     } else {
+//         infowindow.open(naverMap, marker1);
+//     }
+//   });
+//   useListener(marker2, 'click', function() {
+//     if (marker2.getAnimation() !== null) {
+//       marker2.setAnimation(null);
+//     } else {
+//       marker2.setAnimation(naver.maps.Animation.BOUNCE);
+//     }
+//   });
 
-  useListener(naverMap, 'click', function(e) {
-    new naver.maps.Marker({  // point에 마커를 표시함
-        map: naverMap,
-        position: e.latlng,
-        icon: {
-          url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
-          scaledSize: new navermaps.Size(50, 50),
-          // origin: new navermaps.Point(0, 0)
-          anchor: new navermaps.Point(25, 25)
-        }
-    });
-  });
+//   useListener(naverMap, 'click', function(e) {
+//     new naver.maps.Marker({  // point에 마커를 표시함
+//         map: naverMap,
+//         position: e.latlng,
+//         icon: {
+//           url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
+//           scaledSize: new navermaps.Size(50, 50),
+//           // origin: new navermaps.Point(0, 0)
+//           anchor: new navermaps.Point(25, 25)
+//         }
+//     });
+//   });
   
-  return (
-    <>
-      <Overlay element={marker1} />
-      <Overlay element={marker2} />
-    </>
-  )
-}
+//   return (
+//     <>
+//       <Overlay element={marker1} />
+//       <Overlay element={marker2} />
+//     </>
+//   )
+// }
 
 
 // function MyMarkers() {
@@ -233,202 +234,227 @@ function MyMarkers() {
 //   );
 // }
 
-// function MyMarkers() {
-//   const map = useMap();
-//   const { naver } = window;
-//   const $ = window.$;
+function MyMarkers() {
+  const map = useMap();
+  const { naver } = window;
+  const $ = window.$;
 
-//   // var map = new naver.maps.Map("map", {
-//   //     center: new naver.maps.LatLng(37.3595316, 127.1052133),
-//   //     zoom: 15,
-//   //     mapTypeControl: true
-//   // });
+  // var map = new naver.maps.Map("map", {
+  //     center: new naver.maps.LatLng(37.3595316, 127.1052133),
+  //     zoom: 15,
+  //     mapTypeControl: true
+  // });
 
-//   var infoWindow = new naver.maps.InfoWindow({
-//       anchorSkew: true
-//   });
+  var infoWindow = new naver.maps.InfoWindow({
+    //   anchorSkew: true
+  });
 
-//   map.setCursor('pointer');
+  map.setCursor('pointer');
 
-//   function searchCoordinateToAddress(latlng) {
+  function searchCoordinateToAddress(latlng) {
 
-//       infoWindow.close();
+      infoWindow.close();
 
-//       naver.maps.Service.reverseGeocode({
-//           coords: latlng,
-//           orders: [
-//               naver.maps.Service.OrderType.ADDR,
-//               naver.maps.Service.OrderType.ROAD_ADDR
-//           ].join(',')
-//       }, function(status, response) {
-//           if (status === naver.maps.Service.Status.ERROR) {
-//               return alert('Something Wrong!');
-//           }
+      naver.maps.Service.reverseGeocode({
+          coords: latlng,
+          orders: [
+              naver.maps.Service.OrderType.ADDR,
+              naver.maps.Service.OrderType.ROAD_ADDR
+          ].join(',')
+      }, function(status, response) {
+          if (status === naver.maps.Service.Status.ERROR) {
+              return alert('Something Wrong!');
+          }
 
-//           var items = response.v2.results,
-//               address = '',
-//               htmlAddresses = [];
 
-//           for (var i=0, ii=items.length, item, addrType; i<ii; i++) {
-//               item = items[i];
-//               address = makeAddress(item) || '';
-//               addrType = item.name === 'roadaddr' ? '[도로명 주소]' : '[지번 주소]';
+          var items = response.v2.results,
+              address = '',
+              htmlAddresses = [];
 
-//               htmlAddresses.push((i+1) +'. '+ addrType +' '+ address);
-//           }
+          for (var i=0, ii=items.length, item, addrType; i<ii; i++) {
+              item = items[i];
+              console.log(item);
+              address = makeAddress(item) || '';
+              addrType = item.name === 'roadaddr' ? '[도로명 주소]' : '[지번 주소]';
 
-//           infoWindow.setContent([
-//               '<div style="padding:10px;min-width:200px;line-height:150%;">',
-//               '<h4 style="margin-top:5px;">검색 좌표</h4><br />',
-//               htmlAddresses.join('<br />'),
-//               '</div>'
-//           ].join('\n'));
+              htmlAddresses.push((i+1) +'. '+ addrType +' '+ address);
+          }
 
-//           infoWindow.open(map, latlng);
-//       });
-//   }
+          infoWindow.setContent([
+              '<div style="padding:10px;min-width:200px;line-height:150%;">',
+              '<h4 style="margin-top:5px;">검색 좌표</h4><br />',
+              htmlAddresses.join('<br />'),
+              '</div>'
+          ].join('\n'));
 
-//   function searchAddressToCoordinate(address) {
-//       naver.maps.Service.geocode({
-//           query: address
-//       }, function(status, response) {
-//           if (status === naver.maps.Service.Status.ERROR) {
-//               return alert('Something Wrong!');
-//           }
+          infoWindow.open(map, latlng);
+      });
+  }
 
-//           if (response.v2.meta.totalCount === 0) {
-//               return alert('totalCount' + response.v2.meta.totalCount);
-//           }
+  function searchAddressToCoordinate(address) {
+      naver.maps.Service.geocode({
+          query: address
+      }, function(status, response) {
+          if (status === naver.maps.Service.Status.ERROR) {
+              return alert('Something Wrong!');
+          }
 
-//           var htmlAddresses = [],
-//               item = response.v2.addresses[0],
-//               point = new naver.maps.Point(item.x, item.y);
+          if (response.v2.meta.totalCount === 0) {
+            //   return alert('totalCount' + response.v2.meta.totalCount);
+            return alert('주소를 입력해주세요!');
+          }
 
-//           if (item.roadAddress) {
-//               htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
-//           }
+          var htmlAddresses = [],
+              item = response.v2.addresses[0],
+              point = new naver.maps.Point(item.x, item.y);
+          
+          console.log(point);
 
-//           if (item.jibunAddress) {
-//               htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
-//           }
+          if (item.roadAddress) {
+              htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
+          }
 
-//           if (item.englishAddress) {
-//               htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
-//           }
+          if (item.jibunAddress) {
+              htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
+          }
 
-//           infoWindow.setContent([
-//               '<div style="padding:10px;min-width:200px;line-height:150%;">',
-//               '<h4 style="margin-top:5px;">검색 주소 : '+ address +'</h4><br />',
-//               htmlAddresses.join('<br />'),
-//               '</div>'
-//           ].join('\n'));
+          if (item.englishAddress) {
+              htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
+          }
 
-//           map.setCenter(point);
-//           infoWindow.open(map, point);
-//       });
-//   }
+          infoWindow.setContent([
+              '<div style="padding:10px;min-width:200px;line-height:150%;">',
+              '<h4 style="margin-top:5px;">검색 주소 : '+ address +'</h4><br />',
+              htmlAddresses.join('<br />'),
+              '</div>'
+          ].join('\n'));
 
-//   function initGeocoder() {
-//       map.addListener('click', function(e) {
-//           searchCoordinateToAddress(e.coord);
-//       });
+          map.setCenter(point);
+          map.setZoom(17);
+          infoWindow.open(map, point);
+        //     marker = new naver.maps.Marker({
+        //     map: map,
+        //     position: point,
+        //     // icon: {
+        //     //     url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
+        //     //     scaledSize: new naver.maps.Size(50, 50),
+        //     //     // anchor: new naver.maps.Point(12, 37),
+        //     //     // origin: new naver.maps.Point(MARKER_SPRITE_POSITION[key][0], MARKER_SPRITE_POSITION[key][1])
+        //     // },
+        //     zIndex: 100
+        // });
+      });
+  }
 
-//       $('#address').on('keydown', function(e) {
-//           var keyCode = e.which;
+  function initGeocoder() {
+      map.addListener('click', function(e) {
+        //   searchCoordinateToAddress(e.coord);
+        infoWindow.close();
+      });
 
-//           if (keyCode === 13) { // Enter Key
-//               searchAddressToCoordinate($('#address').val());
-//           }
-//       });
+      $('#address').on('keydown', function(e) {
+          var keyCode = e.which;
 
-//       $('#submit').on('click', function(e) {
-//           e.preventDefault();
+          if (keyCode === 13) { // Enter Key
+              searchAddressToCoordinate($('#address').val());
+          }
+      });
 
-//           searchAddressToCoordinate($('#address').val());
-//       });
+      $('#submit').on('click', function(e) {
+          e.preventDefault();
 
-//       searchAddressToCoordinate('정자동 178-1');
-//   }
+          searchAddressToCoordinate($('#address').val());
+      });
+  }
 
-//   function makeAddress(item) {
-//       if (!item) {
-//           return;
-//       }
+  function makeAddress(item) {
+      if (!item) {
+          return;
+      }
 
-//       var name = item.name,
-//           region = item.region,
-//           land = item.land,
-//           isRoadAddress = name === 'roadaddr';
+      var name = item.name,
+          region = item.region,
+          land = item.land,
+          isRoadAddress = name === 'roadaddr';
 
-//       var sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
+      var sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
 
-//       if (hasArea(region.area1)) {
-//           sido = region.area1.name;
-//       }
+      if (hasArea(region.area1)) {
+          sido = region.area1.name;
+      }
 
-//       if (hasArea(region.area2)) {
-//           sigugun = region.area2.name;
-//       }
+      if (hasArea(region.area2)) {
+          sigugun = region.area2.name;
+      }
 
-//       if (hasArea(region.area3)) {
-//           dongmyun = region.area3.name;
-//       }
+      if (hasArea(region.area3)) {
+          dongmyun = region.area3.name;
+      }
 
-//       if (hasArea(region.area4)) {
-//           ri = region.area4.name;
-//       }
+      if (hasArea(region.area4)) {
+          ri = region.area4.name;
+      }
 
-//       if (land) {
-//           if (hasData(land.number1)) {
-//               if (hasData(land.type) && land.type === '2') {
-//                   rest += '산';
-//               }
+      if (land) {
+          if (hasData(land.number1)) {
+              if (hasData(land.type) && land.type === '2') {
+                  rest += '산';
+              }
 
-//               rest += land.number1;
+              rest += land.number1;
 
-//               if (hasData(land.number2)) {
-//                   rest += ('-' + land.number2);
-//               }
-//           }
+              if (hasData(land.number2)) {
+                  rest += ('-' + land.number2);
+              }
+          }
 
-//           if (isRoadAddress === true) {
-//               if (checkLastString(dongmyun, '면')) {
-//                   ri = land.name;
-//               } else {
-//                   dongmyun = land.name;
-//                   ri = '';
-//               }
+          if (isRoadAddress === true) {
+              if (checkLastString(dongmyun, '면')) {
+                  ri = land.name;
+              } else {
+                  dongmyun = land.name;
+                  ri = '';
+              }
 
-//               if (hasAddition(land.addition0)) {
-//                   rest += ' ' + land.addition0.value;
-//               }
-//           }
-//       }
+              if (hasAddition(land.addition0)) {
+                  rest += ' ' + land.addition0.value;
+              }
+          }
+      }
+      return [sido, sigugun, dongmyun, ri, rest].join(' ');
+  }
 
-//       return [sido, sigugun, dongmyun, ri, rest].join(' ');
-//   }
+  function hasArea(area) {
+      return !!(area && area.name && area.name !== '');
+  }
 
-//   function hasArea(area) {
-//       return !!(area && area.name && area.name !== '');
-//   }
+  function hasData(data) {
+      return !!(data && data !== '');
+  }
 
-//   function hasData(data) {
-//       return !!(data && data !== '');
-//   }
+  function checkLastString (word, lastString) {
+      return new RegExp(lastString + '$').test(word);
+  }
 
-//   function checkLastString (word, lastString) {
-//       return new RegExp(lastString + '$').test(word);
-//   }
+  function hasAddition (addition) {
+      return !!(addition && addition.value);
+  }
 
-//   function hasAddition (addition) {
-//       return !!(addition && addition.value);
-//   }
+  naver.maps.onJSContentLoaded = initGeocoder;
 
-//   naver.maps.onJSContentLoaded = initGeocoder;
-//   return(
-//     null
-//   );
-// }
+  return(
+    <div className='mymarker'>
+        {/* <div className='mymarker__top'>
+            <FlagIcon />
+            <button>목적지 선택하기</button>
+        </div> */}
+        <div className='mymarker__bottom'>
+            <input className='mymarker__button' id="address" type="text" placeholder="목적지를 입력하세요"></input>
+            <input className='mymarker__button' id='submit' type='button' value='검색'/>
+        </div>
+    </div>
+  );
+}
 
 
 function MyMap() {
@@ -440,6 +466,7 @@ function MyMap() {
       <NaverMap
         defaultCenter={new navermaps.LatLng(37.5657259, 126.97547)}
         defaultZoom={17}
+        disableKineticPan={false}
       >
         <MyMarkers />
           {/* <Marker
@@ -556,6 +583,7 @@ function Map() {
   return (
     <div>
       <MapDiv
+        className={'map'}
         style={{
           width: "100vw",
           height: "100vh",
