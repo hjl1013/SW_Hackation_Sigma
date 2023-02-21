@@ -248,9 +248,6 @@ export default CommunityMap;
 
 
 
-
-
-
 // import React, { useState } from "react";
 
 // // define your image groups as an array of arrays, where each inner array represents a group of 3 images
