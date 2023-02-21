@@ -29,9 +29,17 @@
     margin-bottom: 20px;
 }
 
-.communityPosts__theme > .MuiButton-root{
+.communityPosts__theme > .MuiButton-root {
     background-color: white;
     margin-right: 10px;
+}
+
+.communityPosts__theme--activate > .MuiButton-root {
+    background-color: #2e81f4;
+}
+
+.communityPosts__theme--activate > button {
+    color: white;
 }
 
 .communityPosts__createPostButton {

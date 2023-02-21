@@ -3,8 +3,9 @@ import './CreatePost.css'
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Button } from '@mui/material';
+import { CommunityAPIImpl } from '../../../../../../lib/infrastructure/CommunityAPIImpl';
 
-function CreatePost() {
+function CreatePost({ communityId, communityName, themeId, themeName }) {
     const [ postImage, setPostImage ] = useState('');
     const [ postTile, setPostTitle ] = useState('');
     const [ postText, setPostText ] = useState('');
@@ -21,6 +22,15 @@ function CreatePost() {
             setPostImage(result);
         }
         console.log(postImage);
+    }
+
+    const onClickCreate = () => {
+        CommunityAPIImpl.createPost(communityId, {
+            commuThemeId: Number(themeId),
+            ImgUrl: postImage,
+            title: postTile,
+            text: postText
+        })
     }
 
     return (
@@ -60,15 +70,15 @@ function CreatePost() {
             <div className='createPost__bottom'>
                 <div className='createPost__categories'>
                     <div className='createPost__category createPost__category--community'>
-                        <h4>Trip</h4>
+                        <h4>{communityName}</h4>
                     </div>
                     <div className='createPost__category createPost__category--theme'>
-                        <h4>Fishing</h4>
+                        <h4>{themeName}</h4>
                     </div>
                 </div>
 
                 <div className='createPost__createButton'>
-                    <Button>Create</Button>
+                    <Button onClick={onClickCreate}>Create</Button>
                 </div>
             </div>
         </div>

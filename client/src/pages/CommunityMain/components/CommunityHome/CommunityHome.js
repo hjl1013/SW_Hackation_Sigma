@@ -71,7 +71,7 @@ function CommunityHome({ communityId }) {
                 {   
                     recentPostInfos.map(postInfo => {
                         return (
-                            <div className='communityHome__post'>
+                            <div key={postInfo.post.id} className='communityHome__post'>
                                 <Post
                                     communityName={communityName}
                                     themeName={postInfo.themeName}
@@ -89,7 +89,7 @@ function CommunityHome({ communityId }) {
                 {   
                     hotPostInfos.map(postInfo => {
                         return (
-                            <div className='communityHome__post'>
+                            <div key={postInfo.post.id} className='communityHome__post'>
                                 <Post
                                     communityName={communityName}
                                     themeName={postInfo.themeName}

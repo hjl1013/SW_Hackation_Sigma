@@ -35,4 +35,5 @@
 .communityMetaChat__unityEmbedding > canvas {
     border-radius: 10px;
     margin-bottom: 20px;
+    height: 450px;
 }
