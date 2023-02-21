@@ -52,7 +52,7 @@ function CommunityPosts() {
                     </div>
                     { isCreating && <CreatePost /> }
                 </div>
-                <div className='communityPosts__post'>
+                {/* <div className='communityPosts__post'>
                     <Post />
                 </div>
                 <div className='communityPosts__post'>
@@ -63,7 +63,7 @@ function CommunityPosts() {
                 </div>
                 <div className='communityPosts__post'>
                     <Post />
-                </div>
+                </div> */}
             </div>
         </div>
     )

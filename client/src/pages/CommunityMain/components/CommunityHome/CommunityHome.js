@@ -6,25 +6,40 @@ import './CommunityHome.css'
 
 function CommunityHome({ communityId }) {
     const [ communityInfo, setCommunityInfo ] = useState({});
-    const [ recentPosts, setRecentPosts ] = useState([]);
-    const [ hotPosts, setHotPosts ] = useState([]);
+    const [ recentPostInfos, setRecentPosts ] = useState([]);
+    const [ hotPostInfos, setHotPostInfos ] = useState([]);
 
     useEffect(() => {
         try {
             CommunityAPIImpl.getPosts(communityId)
                 .then(response => {
-                    setCommunityInfo(response.data)
-                    
-                    communityInfo.commuThemes.forEach(theme => {
-                        theme.posts.forEach(post => {
-                            if (recentPosts.length < 3) {
-                                setRecentPosts(p => [...p, post])
+                    const communityInfoTemp = response.data;
+
+                    let rPostInfos = []
+                    let hPostInfos = []
+                    if (communityInfoTemp.commuThemes) {
+                        communityInfoTemp.commuThemes.forEach(theme => {
+                            if (theme.posts) {
+                                theme.posts.forEach(post => {
+                                    if (rPostInfos.length < 3) {
+                                        rPostInfos = [...rPostInfos, {
+                                            post,
+                                            themeName: theme.commuThemeName
+                                        }]
+                                    } else if (hPostInfos.length < 3) {
+                                        hPostInfos = [...hPostInfos, {
+                                            post,
+                                            themeName: theme.commuThemeName
+                                        }]
+                                    }
+                                })
                             }
-                            else if (hotPosts.length < 3) {
-                                setHotPosts(p => [...p, post])
-                            }
-                        })
-                    });
+                        });
+                    }
+
+                    setCommunityInfo(communityInfoTemp);
+                    setRecentPosts(rPostInfos);
+                    setHotPostInfos(hPostInfos);
                 })
         } catch (e) {
             console.log(e);
@@ -46,38 +61,40 @@ function CommunityHome({ communityId }) {
 
             <div className='communityHome__body'>
                 <div className='communityHome__sectionTitle'>
-                    <h2>Recent Posts</h2>
+                    <h2>Recent Post</h2>
                 </div>
 
-                { recentPosts.map(post => {
-                    return (
-                        <div className='communityHome__post'>
-                            {/* <Post post={post} /> */}
-                        </div>
-                    )
-                }) }
-                <div className='communityHome__post'>
-                    <Post />
-                </div>
-                <div className='communityHome__post'>
-                    <Post />
-                </div>
-                <div className='communityHome__post'>
-                    <Post />
-                </div>
+                {   
+                    recentPostInfos.map(postInfo => {
+                        return (
+                            <div className='communityHome__post'>
+                                <Post
+                                    communityName={communityInfo.commuName}
+                                    themeName={postInfo.themeName}
+                                    postInfo={postInfo.post}
+                                />
+                            </div>
+                        );
+                    })
+                }
 
                 <div className='communityHome__sectionTitle'>
                     <h2>Hot Posts</h2>
                 </div>
-                <div className='communityHome__post'>
-                    <Post />
-                </div>
-                <div className='communityHome__post'>
-                    <Post />
-                </div>
-                <div className='communityHome__post'>
-                    <Post />
-                </div>
+
+                {   
+                    hotPostInfos.map(postInfo => {
+                        return (
+                            <div className='communityHome__post'>
+                                <Post
+                                    communityName={communityInfo.commuName}
+                                    themeName={postInfo.themeName}
+                                    postInfo={postInfo.post}
+                                />
+                            </div>
+                        );
+                    })
+                }
             </div>
         </div>
     )

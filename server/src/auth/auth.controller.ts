@@ -1,4 +1,4 @@
-import { Body, Controller, ForbiddenException, Patch, Post, Res } from '@nestjs/common'
+import { Body, Controller, ForbiddenException, Get, Patch, Post, Res } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { Response } from 'express'
 import { ApiTags } from '@nestjs/swagger'
@@ -24,7 +24,7 @@ export class AuthController {
     async login(
         @Body() loginCredentialsDto: LoginCredentialsDto,
         @Res({ passthrough: true }) response: Response,
-    ): Promise<void> {
+    ): Promise<UserDto> {
         const user = await this.authService.validateUser(loginCredentialsDto)
         if (user === undefined) {
             throw new ForbiddenException(
@@ -44,6 +44,7 @@ export class AuthController {
                 secure: true,
             },
         )
+        return user;
     }
 
     @Public()
@@ -52,5 +53,12 @@ export class AuthController {
         @Body() signUpCredentials: SignUpCredentialsDto,
     ): Promise<UserDto> {
         return this.authService.signUp(signUpCredentials)
+    }
+
+    @Get('is-logged-in')
+    async isLoggedIn(
+        @ExtractUser() user: User
+    ): Promise<boolean> {
+        return Boolean(user);
     }
 }

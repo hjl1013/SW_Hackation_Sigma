@@ -59,7 +59,6 @@
 .communitySelect__communityIcon {
     transition: transform 100ms ease-in;
     margin: 10px;
-    height: 100%;
 }
 
 .communitySelect__communityIcon:hover {

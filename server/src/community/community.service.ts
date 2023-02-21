@@ -93,7 +93,11 @@ export class CommunityService {
                             include: {
                                 user: {
                                     include: {
-                                        profile: true,
+                                        profile: {
+                                            include: {
+                                                avatar: true
+                                            }
+                                        }
                                     },
                                 },
                             },

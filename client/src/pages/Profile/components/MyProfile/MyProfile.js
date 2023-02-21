@@ -31,7 +31,7 @@ function MyProfile() {
             </div>
 
             <div className='myProfile__posts'>
-                <div className='myProfile__post'>
+                {/* <div className='myProfile__post'>
                     <Post />
                 </div>
                 <div className='myProfile__post'>
@@ -42,7 +42,7 @@ function MyProfile() {
                 </div>
                 <div className='myProfile__post'>
                     <Post />
-                </div>
+                </div> */}
             </div>
         </div>
     )
