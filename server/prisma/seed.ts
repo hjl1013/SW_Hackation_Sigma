@@ -115,7 +115,7 @@ async function main() {
         data: {
             commuProfileImgUrl: "https://www.divido.com/wp-content/uploads/2022/08/Trip-of-a-lifetime-illustration-Divido.png",
             commuName: "여행 가즈아",
-            commuIntro: "전국 방방곡곡 안 가본 곳 때곤 다 갔다~! 전국 최대 규모 여행 커뮤니티",
+            commuIntro: "전국 최대 규모 여행 커뮤니티",
             commuHT: "#여행",
             commuMemberNumber: "32m",
         },
@@ -126,7 +126,7 @@ async function main() {
         data: {
             commuProfileImgUrl: "https://anchor.host/wp-content/uploads/2020/03/undraw_fishing_hoxa-1024x753.png",
             commuName: "몰래 낚시",
-            commuIntro: "나만아는 낚시 명소!! 월척 같이 공유해요~^^",
+            commuIntro: "월척 같이 공유해요~^^",
             commuHT: "#낚시",
             commuMemberNumber: "44.2k",
         },
@@ -200,7 +200,7 @@ async function main() {
         data: {
             userId: 2,
             commuThemeId: 1,
-            ImgUrl: "https://www.dgram.co.kr/wp-content/uploads/2020/12/%EC%84%A4%EC%95%85%EC%82%B01-scaled.jpg",
+            ImgUrl: "https://cdn.san.chosun.com/news/photo/202110/15220_63846_5617.jpg",
             title: "한적한 설악산 자연휴양림에서 힐링",
             text: "설악산 자연휴양림에서 한적한 휴가를 보내보세요. 산책로를 따라 산책하며 새 소리를 듣고, 맑은 공기를 마시며 스트레스를 날려보세요.",
             numberOfHearts: 54,

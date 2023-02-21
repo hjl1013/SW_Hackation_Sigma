@@ -10,13 +10,34 @@ import { CommunityAPIImpl } from '../../../../lib/infrastructure/CommunityAPIImp
 
 function CommunityPosts({ communityId }) {
     const [ isCreating, setIsCreating ] = useState(false);
-    const [ theme, setTheme ] = useState('');
-    const [ communityInfo, setCommunityInfo ] = useState({});
+
+    const [ themeNames, setThemeNames ] = useState([]);
+    const [ selectedTheme, setSelectedTheme ] = useState('');
+    const [ postInfosByTheme, setPostInfosByTheme ] = useState([]);
 
     useEffect(() => {
         CommunityAPIImpl.getPosts(communityId)
         .then(response => {
-            setCommunityInfo(response.data)
+            const communityInfo = response.data;
+            
+            let themeNamesTemp = []
+            let postInfosByThemeTemp = []
+            communityInfo.commuThemes.forEach(theme => {
+                themeNamesTemp = [...themeNamesTemp, theme.commuThemeName]
+
+                let postsTemp = []
+                theme.posts.forEach(post => {
+                    postsTemp = [...postsTemp, post];
+                })
+
+                postInfosByThemeTemp = [...postInfosByThemeTemp, {
+                    themeName: theme.commuThemeName,
+                    posts: postsTemp
+                }]
+            })
+
+            setThemeNames(themeNamesTemp)
+            setPostInfosByTheme(postInfosByThemeTemp)
         })
     })
 
@@ -41,7 +62,16 @@ function CommunityPosts({ communityId }) {
             </div>
 
             <div className='communityPosts__themes'>
-                <div className={`communityPosts__theme ${theme == ''}communityPosts__theme--activate`}>
+                {
+                    themeNames.map(themeName => {
+                        return (
+                            <div className={`communityPosts__theme ${selectedTheme === themeName && 'communityPosts__theme--activate'}`}>
+                                <Button>{themeName}</Button>
+                            </div>
+                        )
+                    })
+                }
+                <div className={`communityPosts__theme communityPosts__theme--activate`}>
                     <Button>Fishing</Button>
                 </div>
                 <div className='communityPosts__theme'>

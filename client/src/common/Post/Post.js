@@ -17,9 +17,18 @@ function Post({ communityName, themeName, postInfo }) {
 
             <div className='post__body'>
                 <div className='post__context'>
-                    <p>
-                        {postInfo.text}
-                    </p>
+                    <div className='post__contextText'>
+                        <p>
+                            {postInfo.text}
+                        </p>
+                    </div>
+                    { 
+                        postInfo.ImgUrl && 
+                        <div className='post__contextImage'>
+                            <img src={postInfo.ImgUrl} alt='' />
+                        </div>
+                    }
+                    
                 </div>
 
                 <div className='post__categories'>
