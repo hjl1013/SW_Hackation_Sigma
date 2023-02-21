@@ -7,6 +7,10 @@ import accidentDeath from './accidentDeath'
 // import Popup from './Popup'
 import $ from 'jquery';
 import FlagIcon from '@mui/icons-material/Flag';
+import { Button } from '@mui/material'
+import { display, width } from '@mui/system'
+import InfoWindowButton from './InfoWindowButton'
+import ReactDOM from 'react-dom';
 
 
 // function MyMarkers() {
@@ -235,9 +239,15 @@ import FlagIcon from '@mui/icons-material/Flag';
 // }
 
 function MyMarkers() {
+    
+
   const map = useMap();
   const { naver } = window;
   const $ = window.$;
+
+  const handleDestinationSet = (e) => {
+    console.log(e);
+  }
 
   // var map = new naver.maps.Map("map", {
   //     center: new naver.maps.LatLng(37.3595316, 127.1052133),
@@ -318,9 +328,11 @@ function MyMarkers() {
               htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
           }
 
-          if (item.englishAddress) {
-              htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
-          }
+        //   htmlAddresses.push(ReactDomServer.renderToString(<InfoWindowButton />));
+
+        //   if (item.englishAddress) {
+        //       htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
+        //   }
 
           infoWindow.setContent([
               '<div style="padding:10px;min-width:200px;line-height:150%;">',
