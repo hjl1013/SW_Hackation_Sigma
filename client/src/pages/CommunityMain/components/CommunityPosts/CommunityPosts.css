@@ -29,9 +29,29 @@
     margin-bottom: 20px;
 }
 
-.communityPosts__theme > .MuiButton-root{
+.communityPosts__theme > .MuiButton-root {
     background-color: white;
     margin-right: 10px;
+}
+
+.communityPosts__theme--activate > .MuiButton-root {
+    background-color: #2e81f4;
+}
+
+.communityPosts__theme--activate > button {
+    color: white;
+}
+
+.communityPosts__createPostButton {
+    margin-bottom: 10px;
+}
+
+.communityPosts__createPostButton > button > h4 {
+    margin-left: 5px;
+}
+
+.communityPosts__createPostBox {
+    transition: 300ms;
 }
 
 .communityPosts__post {

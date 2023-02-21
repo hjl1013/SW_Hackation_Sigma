@@ -4,8 +4,10 @@ import { DesCredentialsDto } from 'src/location/dto/des-credentials.dto';
 import { ExtractUser } from 'src/utility/decorators/extract-user.decorator';
 import { LocationService } from './location.service';
 import { UserDto } from 'src/common/dto/user.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('location')
+@ApiTags('location')
 export class LocationController {
     constructor(private locationService: LocationService) {}
 

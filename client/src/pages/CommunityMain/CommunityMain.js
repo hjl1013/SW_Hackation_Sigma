@@ -15,10 +15,10 @@ function CommunityMain() {
         <div className='communityMain'>
 
             <div className='communityMain__body'>
-                { communityContent === 'home' && <CommunityHome /> }
-                { communityContent === 'posts' && <CommunityPosts /> }
-                { communityContent === 'metaChat' && <CommunityMetaChat /> }
-                { communityContent === 'map' && <CommunityMap /> }
+                { communityContent === 'home' && <CommunityHome communityId={communityId}/> }
+                { communityContent === 'posts' && <CommunityPosts communityId={communityId}/> }
+                { communityContent === 'metaChat' && <CommunityMetaChat communityId={communityId}/> }
+                { communityContent === 'map' && <CommunityMap communityId={communityId}/> }
             </div>
             
             <div className='communityMain__menuBar'>
