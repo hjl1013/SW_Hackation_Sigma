@@ -1,20 +1,20 @@
 import axios from 'axios'
-import { CommunityWithPostsDto, CreateCommunityDto } from '../dto/community.dto'
+import { CommunityDto, CommunityWithPostsDto, CreateCommunityDto } from '../dto/community.dto'
 import { CreatePostDto } from '../dto/post.dto'
 import { CreateThemeDto } from '../dto/theme.dto'
 
 export const CommunityAPIImpl = {
-    createCommunity: async (createCommunityDto: CreateCommunityDto): Promise<void> => {
-        await axios.post(`/community/create`, createCommunityDto)
+    createCommunity: async (createCommunityDto: CreateCommunityDto): Promise<CreateCommunityDto> => {
+        return await axios.post(`/community/create`, createCommunityDto)
     },
     createTheme: async (communityId: number, createThemeDto: CreateThemeDto): Promise<void> => {
         await axios.post(`/community/${communityId}/createTheme`, createThemeDto)
     },
-    createPost: async (communityId: number, createPostDto: CreatePostDto): Promise<void> => {
-        await axios.post(`/community/${communityId}/posting`, createPostDto)
+    createPost: async (communityId: number, createPostDto: CreatePostDto): Promise<CreatePostDto> => {
+        return await axios.post(`/community/${communityId}/posting`, createPostDto)
     },
 
-    getCommunities: async () => {
+    getCommunities: async (): Promise<CommunityDto> => {
         return await axios.get(`/community`)
     },
     getPosts: async (communityId: number): Promise<CommunityWithPostsDto> => {
