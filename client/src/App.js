@@ -28,8 +28,7 @@ function App() {
 
   return (
     <div className="app">
-      {/* { state.isLoggedIn? <AppRouter /> : <Auth /> } */}
-      <AppRouter />
+      { state.isLoggedIn? <AppRouter /> : <Auth /> }
     </div>
   );
 }

@@ -10,6 +10,7 @@ import CommunityMap from './components/CommunityMap/CommunityMap'
 
 function CommunityMain() {
     const { communityId, communityContent } = useParams()
+    console.log(communityContent);
 
     return (
         <div className='communityMain'>

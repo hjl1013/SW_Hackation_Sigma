@@ -31,6 +31,9 @@ function CreatePost({ communityId, communityName, themeId, themeName }) {
             title: postTile,
             text: postText
         })
+        setPostImage('')
+        setPostTitle('')
+        setPostText('')
     }
 
     return (
