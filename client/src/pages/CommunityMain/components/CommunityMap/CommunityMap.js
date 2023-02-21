@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { Container as MapDiv, Marker, NaverMap, Overlay, useMap, useNavermaps } from 'react-naver-maps';
 import ReactDOMServer from 'react-dom/server'
-import Popup from 'D:/SW_Hackation_Sigma/client/src/pages/Home/components/Popup/Popup'
+import Popup from '../Popup/Popup'
 
 function MyMap() {
     const navermaps = useNavermaps();
