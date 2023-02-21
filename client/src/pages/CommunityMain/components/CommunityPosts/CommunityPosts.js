@@ -1,14 +1,24 @@
 import { Button } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Post from '../../../../common/Post/Post'
 import './CommunityPosts.css'
 import CreatePost from './components/CreatePost/CreatePost'
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { CommunityAPIImpl } from '../../../../lib/infrastructure/CommunityAPIImpl'
 
-function CommunityPosts() {
+function CommunityPosts({ communityId }) {
     const [ isCreating, setIsCreating ] = useState(false);
+    const [ theme, setTheme ] = useState('');
+    const [ communityInfo, setCommunityInfo ] = useState({});
+
+    useEffect(() => {
+        CommunityAPIImpl.getPosts(communityId)
+        .then(response => {
+            setCommunityInfo(response.data)
+        })
+    })
 
     const onClickCreateButton = () => {
         setIsCreating(state => !state);
@@ -31,7 +41,7 @@ function CommunityPosts() {
             </div>
 
             <div className='communityPosts__themes'>
-                <div className='communityPosts__theme'>
+                <div className={`communityPosts__theme ${theme == ''}communityPosts__theme--activate`}>
                     <Button>Fishing</Button>
                 </div>
                 <div className='communityPosts__theme'>

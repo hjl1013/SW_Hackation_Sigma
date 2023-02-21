@@ -5,56 +5,60 @@ import { CommunityAPIImpl } from '../../../../lib/infrastructure/CommunityAPIImp
 import './CommunityHome.css'
 
 function CommunityHome({ communityId }) {
-    const [ communityInfo, setCommunityInfo ] = useState({});
+    const [ communityName, setCommunityName ] = useState('');
+    const [ communityProfileUrl, setCommunityProfileUrl ] = useState('');
+    const [ communityIntroduction, setCommunityIntroduction ] = useState('');
     const [ recentPostInfos, setRecentPosts ] = useState([]);
     const [ hotPostInfos, setHotPostInfos ] = useState([]);
 
     useEffect(() => {
         try {
             CommunityAPIImpl.getPosts(communityId)
-                .then(response => {
-                    const communityInfoTemp = response.data;
+            .then(response => {
+                const communityInfo = response.data;
 
-                    let rPostInfos = []
-                    let hPostInfos = []
-                    if (communityInfoTemp.commuThemes) {
-                        communityInfoTemp.commuThemes.forEach(theme => {
-                            if (theme.posts) {
-                                theme.posts.forEach(post => {
-                                    if (rPostInfos.length < 3) {
-                                        rPostInfos = [...rPostInfos, {
-                                            post,
-                                            themeName: theme.commuThemeName
-                                        }]
-                                    } else if (hPostInfos.length < 3) {
-                                        hPostInfos = [...hPostInfos, {
-                                            post,
-                                            themeName: theme.commuThemeName
-                                        }]
-                                    }
-                                })
-                            }
-                        });
-                    }
+                let rPostInfos = []
+                let hPostInfos = []
+                if (communityInfo.commuThemes) {
+                    communityInfo.commuThemes.forEach(theme => {
+                        if (theme.posts) {
+                            theme.posts.forEach(post => {
+                                if (rPostInfos.length < 3) {
+                                    rPostInfos = [...rPostInfos, {
+                                        post,
+                                        themeName: theme.commuThemeName
+                                    }]
+                                } else if (hPostInfos.length < 3) {
+                                    hPostInfos = [...hPostInfos, {
+                                        post,
+                                        themeName: theme.commuThemeName
+                                    }]
+                                }
+                            })
+                        }
+                    });
+                }
 
-                    setCommunityInfo(communityInfoTemp);
-                    setRecentPosts(rPostInfos);
-                    setHotPostInfos(hPostInfos);
-                })
+                setCommunityName(communityInfo.commuName);
+                setCommunityProfileUrl(communityInfo.commuProfileImgUrl);
+                setCommunityIntroduction(communityInfo.commuIntro);
+                setRecentPosts(rPostInfos);
+                setHotPostInfos(hPostInfos);
+            })
         } catch (e) {
             console.log(e);
         }
-    }, [])
+    })
 
     return (
         <div className='communityHome'>
             <div className='communityHome__communityProfile'>
                 <div className='communityHome__communityProfileImage'>
-                    <img src={communityInfo.commuProfileImgUrl} alt=''/>
+                    <img src={communityProfileUrl} alt=''/>
                 </div>
                 <div className='communityHome__communityProfileInfo'>
-                    <h1>{communityInfo.commuName}</h1>
-                    <p>{communityInfo.commuIntro}</p>
+                    <h1>{communityName}</h1>
+                    <p>{communityIntroduction}</p>
                     <Button>Join</Button>
                 </div>
             </div>
@@ -69,7 +73,7 @@ function CommunityHome({ communityId }) {
                         return (
                             <div className='communityHome__post'>
                                 <Post
-                                    communityName={communityInfo.commuName}
+                                    communityName={communityName}
                                     themeName={postInfo.themeName}
                                     postInfo={postInfo.post}
                                 />
@@ -87,7 +91,7 @@ function CommunityHome({ communityId }) {
                         return (
                             <div className='communityHome__post'>
                                 <Post
-                                    communityName={communityInfo.commuName}
+                                    communityName={communityName}
                                     themeName={postInfo.themeName}
                                     postInfo={postInfo.post}
                                 />

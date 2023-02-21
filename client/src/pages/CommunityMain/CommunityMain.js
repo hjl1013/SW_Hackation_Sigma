@@ -18,8 +18,8 @@ function CommunityMain() {
 
             <div className='communityMain__body'>
                 { communityContent === 'home' && <CommunityHome communityId={communityId}/> }
-                { communityContent === 'posts' && <CommunityPosts /> }
-                { communityContent === 'metaChat' && <CommunityMetaChat /> }
+                { communityContent === 'posts' && <CommunityPosts communityId={communityId}/> }
+                { communityContent === 'metaChat' && <CommunityMetaChat communityId={communityId}/> }
             </div>
 
             <div className='communityMain__communityBar'>
