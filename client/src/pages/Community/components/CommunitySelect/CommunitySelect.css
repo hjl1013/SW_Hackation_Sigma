@@ -47,7 +47,7 @@
 .communitySelect__communityIcons {
     display: flex;
     flex-wrap: wrap;
-    width: 1000px;
+    width: 1040px;
     justify-content: center;
 }
 
@@ -59,6 +59,7 @@
 .communitySelect__communityIcon {
     transition: transform 100ms ease-in;
     margin: 10px;
+    height: 100%;
 }
 
 .communitySelect__communityIcon:hover {

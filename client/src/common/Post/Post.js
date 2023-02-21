@@ -22,15 +22,12 @@ function Post() {
                     </p>
                 </div>
 
-                <div className='post__communities'>
-                    <div className='post__community'>
-                        <h4>Fishing</h4>
-                    </div>
-                    <div className='post__community'>
-                        <h4>Korea</h4>
-                    </div>
-                    <div className='post__community'>
+                <div className='post__categories'>
+                    <div className='post__category post__category--community'>
                         <h4>Trip</h4>
+                    </div>
+                    <div className='post__category post__category--theme'>
+                        <h4>Fishing</h4>
                     </div>
                 </div>
             </div>

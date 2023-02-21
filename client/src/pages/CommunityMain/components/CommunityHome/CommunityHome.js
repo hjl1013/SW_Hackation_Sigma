@@ -14,39 +14,32 @@ function CommunityHome({ communityId }) {
             CommunityAPIImpl.getPosts(communityId)
                 .then(response => {
                     setCommunityInfo(response.data)
+                    
+                    communityInfo.commuThemes.forEach(theme => {
+                        theme.posts.forEach(post => {
+                            if (recentPosts.length < 3) {
+                                setRecentPosts(p => [...p, post])
+                            }
+                            else if (hotPosts.length < 3) {
+                                setHotPosts(p => [...p, post])
+                            }
+                        })
+                    });
                 })
         } catch (e) {
             console.log(e);
         }
     }, [])
 
-    const {
-        commuProfileImgUrl,
-        commuName,
-        commuIntro,
-        commuThemes
-    } = communityInfo;
-
-    commuThemes.forEach(theme => {
-        theme.posts.forEach(post => {
-            if (recentPosts.length < 3) {
-                setRecentPosts(p => [...p, post])
-            }
-            else if (hotPosts.length < 3) {
-                setHotPosts(p => [...p, post])
-            }
-        })
-    });
-
     return (
         <div className='communityHome'>
             <div className='communityHome__communityProfile'>
                 <div className='communityHome__communityProfileImage'>
-                    <img src={commuProfileImgUrl} alt=''/>
+                    <img src={communityInfo.commuProfileImgUrl} alt=''/>
                 </div>
                 <div className='communityHome__communityProfileInfo'>
-                    <h1>{commuName}</h1>
-                    <p>{commuIntro}</p>
+                    <h1>{communityInfo.commuName}</h1>
+                    <p>{communityInfo.commuIntro}</p>
                     <Button>Join</Button>
                 </div>
             </div>
@@ -59,7 +52,7 @@ function CommunityHome({ communityId }) {
                 { recentPosts.map(post => {
                     return (
                         <div className='communityHome__post'>
-                            <Post post={post} />
+                            {/* <Post post={post} /> */}
                         </div>
                     )
                 }) }

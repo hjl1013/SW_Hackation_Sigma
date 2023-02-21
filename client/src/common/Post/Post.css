@@ -30,18 +30,29 @@
     padding: 10px;
 }
 
-.post__communities {
+.post__categories {
     display: flex;
+    padding: 10px;
 }
 
-.post__community {
+.post__category {
     padding: 10px;
     background-color: lightgray;
     border-radius: 10px;
-    margin: 10px 0 10px 10px;
+    margin-right: 10px;
 }
 
-.post__community > h4 {
+.post__category--community {
+    background-color: #2e81f4;
+    color: white;
+}
+
+.post__category--theme {
+    background-color: lightgray;
+    color: white;
+}
+
+.post__category > h4 {
     font-weight: 500;
 }
 
