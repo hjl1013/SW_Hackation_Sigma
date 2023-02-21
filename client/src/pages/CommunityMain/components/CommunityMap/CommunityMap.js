@@ -2,6 +2,54 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { Container as MapDiv, Marker, NaverMap, Overlay, useMap, useNavermaps } from 'react-naver-maps';
 import ReactDOMServer from 'react-dom/server'
 import Popup from '../Popup/Popup'
+import './CommunityMap.css'
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { maxWidth, width } from '@mui/system';
+
+const MARKER_SPRITE_X_OFFSET = 29,
+MARKER_SPRITE_Y_OFFSET = 50;
+
+function filterByCategory(data, category) {
+    const filteredData = {};
+
+    for (let [key, value] of Object.assign(data)) {
+        if (value.category === category) filteredData[key] = value;
+    }
+
+    return filteredData;
+}
+
+const MARKER_SPRITE_POSITION = {
+    "A0": [0, 0],
+    "B0": [MARKER_SPRITE_X_OFFSET, 0],
+    "C0": [MARKER_SPRITE_X_OFFSET*2, 0],
+    "D0": [MARKER_SPRITE_X_OFFSET*3, 0],
+    "E0": [MARKER_SPRITE_X_OFFSET*4, 0],
+    "F0": [MARKER_SPRITE_X_OFFSET*5, 0],
+    "G0": [MARKER_SPRITE_X_OFFSET*6, 0],
+    "H0": [MARKER_SPRITE_X_OFFSET*7, 0],
+    "I0": [MARKER_SPRITE_X_OFFSET*8, 0],
+
+    "A1": [0, MARKER_SPRITE_Y_OFFSET],
+    "B1": [MARKER_SPRITE_X_OFFSET, MARKER_SPRITE_Y_OFFSET],
+    "C1": [MARKER_SPRITE_X_OFFSET*2, MARKER_SPRITE_Y_OFFSET],
+    "D1": [MARKER_SPRITE_X_OFFSET*3, MARKER_SPRITE_Y_OFFSET],
+    "E1": [MARKER_SPRITE_X_OFFSET*4, MARKER_SPRITE_Y_OFFSET],
+    "F1": [MARKER_SPRITE_X_OFFSET*5, MARKER_SPRITE_Y_OFFSET],
+    "G1": [MARKER_SPRITE_X_OFFSET*6, MARKER_SPRITE_Y_OFFSET],
+    "H1": [MARKER_SPRITE_X_OFFSET*7, MARKER_SPRITE_Y_OFFSET],
+    "I1": [MARKER_SPRITE_X_OFFSET*8, MARKER_SPRITE_Y_OFFSET],
+
+    "A2": [0, MARKER_SPRITE_Y_OFFSET*2],
+    "B2": [MARKER_SPRITE_X_OFFSET, MARKER_SPRITE_Y_OFFSET*2],
+    "C2": [MARKER_SPRITE_X_OFFSET*2, MARKER_SPRITE_Y_OFFSET*2],
+    "D2": [MARKER_SPRITE_X_OFFSET*3, MARKER_SPRITE_Y_OFFSET*2],
+    "E2": [MARKER_SPRITE_X_OFFSET*4, MARKER_SPRITE_Y_OFFSET*2],
+    "F2": [MARKER_SPRITE_X_OFFSET*5, MARKER_SPRITE_Y_OFFSET*2],
+    "G2": [MARKER_SPRITE_X_OFFSET*6, MARKER_SPRITE_Y_OFFSET*2],
+    "H2": [MARKER_SPRITE_X_OFFSET*7, MARKER_SPRITE_Y_OFFSET*2],
+    "I2": [MARKER_SPRITE_X_OFFSET*8, MARKER_SPRITE_Y_OFFSET*2]
+};
 
 function MyMap() {
     const navermaps = useNavermaps();
@@ -9,68 +57,29 @@ function MyMap() {
     const [map, setMap] = useState(null);
     const [bounds, setBounds] = useState(null);
     // const [marker, setMarker] = useState(null);
-    const [markerList, setMarkerList] = useState([]);
+    // const [markerList, setMarkerList] = useState([]);
+    const markers = [],
+    infoWindows = [];
 
+    console.log({map})
 
-//     const [marker2] = useState(() =>
-//       new navermaps.Marker({
-//         position: { lat: 37.5657259, lng: 126.97547 },
-//         icon: {
-//           url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
-//           scaledSize: new navermaps.Size(50, 50),
-//           // origin: new navermaps.Point(0, 0)
-//           anchor: new navermaps.Point(25, 25)
-//         },
-//         animation: navermaps.Animation.DROP
-//       }),
-//   )
-
-
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (map) {
             setBounds(map.bounds);
+            addMarkers(map, MARKER_SPRITE_POSITION);
             console.log(map);
         }
     }, [map])
 
-    const MARKER_SPRITE_X_OFFSET = 29,
-    MARKER_SPRITE_Y_OFFSET = 50,
-    MARKER_SPRITE_POSITION = {
-        "A0": [0, 0],
-        "B0": [MARKER_SPRITE_X_OFFSET, 0],
-        "C0": [MARKER_SPRITE_X_OFFSET*2, 0],
-        "D0": [MARKER_SPRITE_X_OFFSET*3, 0],
-        "E0": [MARKER_SPRITE_X_OFFSET*4, 0],
-        "F0": [MARKER_SPRITE_X_OFFSET*5, 0],
-        "G0": [MARKER_SPRITE_X_OFFSET*6, 0],
-        "H0": [MARKER_SPRITE_X_OFFSET*7, 0],
-        "I0": [MARKER_SPRITE_X_OFFSET*8, 0],
+    function clearMarkers(markers) {
+        markers.forEach(marker => marker.setMap(null));
+        markers = [];
+    }
 
-        "A1": [0, MARKER_SPRITE_Y_OFFSET],
-        "B1": [MARKER_SPRITE_X_OFFSET, MARKER_SPRITE_Y_OFFSET],
-        "C1": [MARKER_SPRITE_X_OFFSET*2, MARKER_SPRITE_Y_OFFSET],
-        "D1": [MARKER_SPRITE_X_OFFSET*3, MARKER_SPRITE_Y_OFFSET],
-        "E1": [MARKER_SPRITE_X_OFFSET*4, MARKER_SPRITE_Y_OFFSET],
-        "F1": [MARKER_SPRITE_X_OFFSET*5, MARKER_SPRITE_Y_OFFSET],
-        "G1": [MARKER_SPRITE_X_OFFSET*6, MARKER_SPRITE_Y_OFFSET],
-        "H1": [MARKER_SPRITE_X_OFFSET*7, MARKER_SPRITE_Y_OFFSET],
-        "I1": [MARKER_SPRITE_X_OFFSET*8, MARKER_SPRITE_Y_OFFSET],
+    function addMarkers(map, MARKER_SPRITE_POSITION) {
+        const { bounds } = map;
 
-        "A2": [0, MARKER_SPRITE_Y_OFFSET*2],
-        "B2": [MARKER_SPRITE_X_OFFSET, MARKER_SPRITE_Y_OFFSET*2],
-        "C2": [MARKER_SPRITE_X_OFFSET*2, MARKER_SPRITE_Y_OFFSET*2],
-        "D2": [MARKER_SPRITE_X_OFFSET*3, MARKER_SPRITE_Y_OFFSET*2],
-        "E2": [MARKER_SPRITE_X_OFFSET*4, MARKER_SPRITE_Y_OFFSET*2],
-        "F2": [MARKER_SPRITE_X_OFFSET*5, MARKER_SPRITE_Y_OFFSET*2],
-        "G2": [MARKER_SPRITE_X_OFFSET*6, MARKER_SPRITE_Y_OFFSET*2],
-        "H2": [MARKER_SPRITE_X_OFFSET*7, MARKER_SPRITE_Y_OFFSET*2],
-        "I2": [MARKER_SPRITE_X_OFFSET*8, MARKER_SPRITE_Y_OFFSET*2]
-    };
-
-    const markers = [],
-        infoWindows = [];
-
-    if(bounds !== null){
+    if(bounds !== null && !markers.length) {
         const southWest = bounds._sw,
             northEast = bounds._ne,
             lngSpan = northEast.lng() - southWest.lng(),
@@ -100,7 +109,8 @@ function MyMap() {
                 <Popup
                     title='현대모비스 해커톤 준비!!'
                     username='SamSam'
-                    message='동아리 대표로 나온 이번 해커톤에서 동아리 이름도 빛내고 학교 이름도 빛내보자! 아자아자~~'
+                    // message='동아리 대표로 나온 이번 해커톤에서 동아리 이름도 빛내고 학교 이름도 빛내보자! 아자아자~~'
+                    message='hi'
                     image={'https://www.hyundai.co.kr/image/upload/asset_library/MDA00000000000015710/4754f2b0f8dd4e8db46ee6e39288f987.jpg'}
                     likes={99}
                 />
@@ -123,7 +133,6 @@ function MyMap() {
         });
     }
 
-    
     function updateMarkers(map, markers) {
 
         const mapBounds = bounds;
@@ -166,55 +175,14 @@ function MyMap() {
                 infoWindow.open(map, marker);
             }
 
-            if (marker.getAnimation() !== null) {
-                marker.setAnimation(null);
-            } else {
-                marker.setAnimation(navermaps.Animation.BOUNCE);
-            }
-
         }
     }
 
     for (var i=0, ii=markers.length; i<ii; i++) {
         navermaps.Event.addListener(markers[i], 'click', getClickHandler(i));
     }
-
-    console.log(markers.length);
-
-    // useEffect(() => {
-    //     setMarkerList(markers);
-    // }, []);
-
-    // function updateMarkers(map, markers) {
-
-    //     const mapBounds = bounds;
-    //     var marker, position;
+    }
     
-    //     for (var i = 0; i < markers.length; i++) {
-    
-    //         marker = markers[i]
-    //         position = marker.getPosition();
-    
-    //         if (mapBounds.hasLatLng(position)) {
-    //             showMarker(map, marker);
-    //         } else {
-    //             hideMarker(map, marker);
-    //         }
-    //     }
-    // }
-
-    // function showMarker(map, marker) {
-    //     if (marker.setMap()) return;
-    //     marker.setMap(map);
-    // }
-    
-    // function hideMarker(map, marker) {
-    //     if (!marker.setMap()) return;
-    //     marker.setMap(null);
-    // }
-    
-    
-
     return(
         <NaverMap
           ref={setMap}
@@ -228,16 +196,49 @@ function MyMap() {
 }
 
 function CommunityMap() {
+    const [showTheme, setShowTheme] = useState(false);
+
+    const handleThemeOpen = () => {
+        setShowTheme(showTheme => !showTheme);
+        // setShowSideBar(showSideBar => !showSideBar);
+        // console.log(showSideBar);
+    }
+
+    const themeList = ['hi', 'hello', 'fuck'];
+
   return (
     <div className='communityMap'>
         <MapDiv
-            className={'communityMap__mapDiv'}
+            className={'communityMap__mapDiv'} // position: relative
             style={{
               width: "100vw",
               height: "100vh",
             }}
         >
             <MyMap />
+            {/* 필터 버튼 UI position: absolute */}
+            <div className='communityMap__filterArea'>
+                <div className='communityMap__filterIcon' onClick={handleThemeOpen}>
+                    <FilterAltIcon />
+                    {/* <h5>테마</h5> */}
+                    <p>테마</p>
+                </div>
+                {showTheme && (
+                    <div className='communityMap__filterBox'>
+                        {(() => {
+                            const buttons = [];
+
+                            for (let i = 0; i < themeList.length; i++) {
+                                buttons.push(<button className='communityMap__filter'>{themeList[i]}</button>);
+                            }
+                            return buttons;
+                        })()}
+                        {/* <button className='communityMap__filter'>hi</button>
+                        <button className='communityMap__filter'>hello</button>
+                        <button className='communityMap__filter'>fuck</button> */}
+                    </div>
+                )}
+            </div>
         </MapDiv>
     </div>
   )

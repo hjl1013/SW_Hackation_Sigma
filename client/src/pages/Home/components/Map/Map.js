@@ -440,7 +440,13 @@ function MyMarkers() {
       return !!(addition && addition.value);
   }
 
-  naver.maps.onJSContentLoaded = initGeocoder;
+  function handleEnterSubmit(event) {
+    if (event.key === "Enter") handleSubmit();
+  }
+
+  function handleSubmit() {
+    searchAddressToCoordinate($('#address').val());  
+  }
 
   return(
     <div className='mymarker'>
@@ -449,8 +455,8 @@ function MyMarkers() {
             <button>목적지 선택하기</button>
         </div> */}
         <div className='mymarker__bottom'>
-            <input className='mymarker__button' id="address" type="text" placeholder="목적지를 입력하세요"></input>
-            <input className='mymarker__button' id='submit' type='button' value='검색'/>
+            <input className='mymarker__button' id="address" type="text" placeholder="목적지를 입력하세요" onKeyUp={handleEnterSubmit}></input>
+            <button className='mymarker__button' id='submit' type='button' onClick={handleSubmit}>검색</button>
         </div>
     </div>
   );
@@ -464,22 +470,11 @@ function MyMap() {
 
   return(
       <NaverMap
-        defaultCenter={new navermaps.LatLng(37.5657259, 126.97547)}
+        defaultCenter={new navermaps.LatLng(37.5176761, 127.0246539)}
         defaultZoom={17}
         disableKineticPan={false}
       >
         <MyMarkers />
-          {/* <Marker
-            style={{
-              padding: "10px"
-            }}
-            position={new navermaps.LatLng(37.3595704, 127.105399)}
-            icon={{
-              url: 'https://conservetorch.org/wp-content/uploads/2021/02/icon_fish.png',
-              scaledSize: new naver.maps.Size(50, 50),
-              origin: new naver.maps.Point(0, 0)
-            }}
-          /> */}
       </NaverMap>
   )
 }

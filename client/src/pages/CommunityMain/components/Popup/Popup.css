@@ -34,6 +34,8 @@
 
 .popup__image > img {
     width: 300px;
+    padding: 10px;
+    margin: 10px;
 }
 
 .popup__options {
