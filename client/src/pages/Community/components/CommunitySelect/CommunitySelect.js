@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 function CommunitySelect() {
-    const [ comminities, setCommunities ] = useState([]);
+    const [ communities, setCommunities ] = useState([]);
 
     useEffect(() => {
         try {
@@ -41,7 +41,7 @@ function CommunitySelect() {
 
             <div className='communitySelect__communityIcons'>
                 {
-                    comminities.map(community => {
+                    communities.map(community => {
                         const { id, commuProfileImgUrl, commuName, commuIntro } = community;
                         return (
                             <Link to={`/community/${id}/home`}>
