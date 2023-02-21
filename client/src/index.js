@@ -8,17 +8,9 @@ import reducer, { initialState } from './lib/react-context-api/reducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<<<<<<< HEAD
-  // <React.StrictMode>
+  <StateProvider initialState={initialState} reducer={reducer}>
     <App />
-  // </React.StrictMode>
-=======
-  <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </StateProvider>
-  </React.StrictMode>
->>>>>>> 84ae6e8d3b49e8ba08e4524c1701462e3b24e80c
+  </StateProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

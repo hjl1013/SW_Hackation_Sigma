@@ -233,10 +233,15 @@ function CommunityMap() {
         }
     }, [map])
 
-    function clearMarkers() {
+    function clearMarkers(markers) {
         markers.forEach((marker) => marker.setMap(null));
-        
         markers = [];
+
+        if(map){
+            navermaps.Event.addListener(map, 'idle', function() {
+                updateMarkers(map, markers);
+            });
+        }
 
     }
 
@@ -291,43 +296,27 @@ function CommunityMap() {
             };
         }
 
-        setMarkerList(markers);
-
         if(map){
             navermaps.Event.addListener(map, 'idle', function() {
                 updateMarkers(map, markers);
             });
-        }
 
-        function updateMarkers(map, markers) {
-
-            const mapBounds = bounds;
-            let marker, position;
-
-            for (let i = 0; i < markers.length; i++) {
-
-                marker = markers[i]
-                position = marker.getPosition();
-
-                if (mapBounds.hasLatLng(position)) {
-                    showMarker(map, marker);
-                } else {
-                    hideMarker(map, marker);
-                }
+            for (var i=0, ii=markers.length; i<ii; i++) {
+                navermaps.Event.addListener(markers[i], 'click', getClickHandler(i));
             }
         }
 
-        function showMarker(map, marker) {
+        // function showMarker(map, marker) {
 
-            if (marker.setMap()) return;
-            marker.setMap(map);
-        }
+        //     if (marker.setMap()) return;
+        //     marker.setMap(map);
+        // }
 
-        function hideMarker(map, marker) {
+        // function hideMarker(map, marker) {
 
-            if (!marker.setMap()) return;
-            marker.setMap(null);
-        }
+        //     if (!marker.setMap()) return;
+        //     marker.setMap(null);
+        // }
 
         // 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
         function getClickHandler(seq) {
@@ -343,29 +332,43 @@ function CommunityMap() {
             }
         }
 
-        for (var i=0, ii=markers.length; i<ii; i++) {
-            navermaps.Event.addListener(markers[i], 'click', getClickHandler(i));
+        
+    }
+
+    function updateMarkers(map, markers) {
+
+        const mapBounds = bounds;
+        let marker, position;
+
+        for (let i = 0; i < markers.length; i++) {
+
+            marker = markers[i]
+            position = marker.getPosition();
+
+            if (mapBounds.hasLatLng(position)) {
+                if (marker.setMap()) return;
+                marker.setMap(map);
+            } else {
+                if (!marker.setMap()) return;
+                marker.setMap(null);
+            }
         }
     }
+
+    
     ///////////////////////////////////////////
 
     const handleThemeOpen = () => {
         setShowTheme(showTheme => !showTheme);
-        // setShowSideBar(showSideBar => !showSideBar);
-        // console.log(showSideBar);
     }
 
     const handleButtonClick = (e) => {
-        // setCategory(e.target.innerText);
-
-        // console.log(markers);
+        setCategory(e.target.innerText);
 
         clearMarkers(markers);
 
-        // console.log(markers);
-
         addMarkers(map, filterByCategory(MARKER_SPRITE_POSITION, e.target.innerText));
-        setMarkerList(markers);
+        // setMarkerList(markers);
     }
 
     const themeList = ['hi', 'hello', 'fuck'];

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import { useEffect, useState } from 'react';
->>>>>>> 84ae6e8d3b49e8ba08e4524c1701462e3b24e80c
 import './App.css';
 import { AuthAPIImpl } from './lib/infrastructure/AuthAPIImpl';
 import { actionTypes } from './lib/react-context-api/reducer';
@@ -31,7 +28,8 @@ function App() {
 
   return (
     <div className="app">
-      { state.isLoggedIn? <AppRouter /> : <Auth /> }
+      {/* { state.isLoggedIn? <AppRouter /> : <Auth /> } */}
+      <AppRouter />
     </div>
   );
 }
