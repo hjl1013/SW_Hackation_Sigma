@@ -10,7 +10,9 @@ import FlagIcon from '@mui/icons-material/Flag';
 import { Button } from '@mui/material'
 import { display, width } from '@mui/system'
 import InfoWindowButton from './InfoWindowButton'
+
 import ReactDOM from 'react-dom';
+import { LocationAPIImpl } from '../../../../lib/infrastructure/LocationAPIImpl'
 
 
 // function MyMarkers() {
@@ -239,15 +241,16 @@ import ReactDOM from 'react-dom';
 // }
 
 function MyMarkers() {
-    
+    const [ destinationLatitude, setDestinationLatitude ] = useState(0);
+    const [ destinationLongitude, setDestinationLongitude] = useState(0);
 
-  const map = useMap();
-  const { naver } = window;
-  const $ = window.$;
+    const map = useMap();
+    const { naver } = window;
+    const $ = window.$;
 
-  const handleDestinationSet = (e) => {
-    console.log(e);
-  }
+    const handleDestinationSet = (e) => {
+        console.log(e);
+    }
 
   // var map = new naver.maps.Map("map", {
   //     center: new naver.maps.LatLng(37.3595316, 127.1052133),
@@ -317,6 +320,9 @@ function MyMarkers() {
           var htmlAddresses = [],
               item = response.v2.addresses[0],
               point = new naver.maps.Point(item.x, item.y);
+          
+          setDestinationLatitude(point.y);
+          setDestinationLongitude(point.x);
           
           console.log(point);
 
@@ -460,6 +466,15 @@ function MyMarkers() {
     searchAddressToCoordinate($('#address').val());  
   }
 
+  async function onClickSetDestination() {
+    await LocationAPIImpl.setUserLocation({
+        destinationName: $('#address').val(),
+        destinationLatitude,
+        destinationLongitude
+    })
+    alert(`${$('#address').val()}로 목적지가 설정 되었습니다.`)
+  }
+
   return(
     <div className='mymarker'>
         {/* <div className='mymarker__top'>
@@ -467,8 +482,9 @@ function MyMarkers() {
             <button>목적지 선택하기</button>
         </div> */}
         <div className='mymarker__bottom'>
-            <input className='mymarker__button' id="address" type="text" placeholder="목적지를 입력하세요" onKeyUp={handleEnterSubmit}></input>
-            <button className='mymarker__button' id='submit' type='button' onClick={handleSubmit}>검색</button>
+            <input className='mymarker__input' id="address" type="text" placeholder="목적지를 입력하세요" onKeyUp={handleEnterSubmit}></input>
+            <Button className='mymarker__button' id='submit' type='button' onClick={handleSubmit}>검색</Button>
+            <Button className='mymarker__button' onClick={onClickSetDestination}>목적지 설정</Button>
         </div>
     </div>
   );

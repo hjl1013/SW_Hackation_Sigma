@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt'
 import { User } from '@prisma/client'
 import * as bcrypt from 'bcrypt'
 import { PrismaService } from 'nestjs-prisma'
-import { UserDto } from 'src/common/dto/user.dto'
+import { UserDto, UserWithAvatarDto } from 'src/common/dto/user.dto'
 import { ConfigService } from '../config/config.service'
 import { LoginCredentialsDto } from './dto/login-credentials.dto'
 import { SignUpCredentialsDto } from './dto/sign-up-credentials.dto'
@@ -112,6 +112,21 @@ export class AuthService {
     async findUser(id: number) {
         return this.prisma.user.findUnique({
             where: { id },
+        })
+    }
+
+    async getUserInfo(user: User): Promise<UserWithAvatarDto> {
+        return this.prisma.user.findUnique({
+            where: {
+                id: user.id
+            },
+            include: {
+                profile: {
+                    include: {
+                        avatar: true
+                    }
+                }
+            }
         })
     }
 }

@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     height: 100%;
-    width: 100%;
+    width: 600px;
 }
 
 .myProfile__profileImage {
@@ -52,6 +52,11 @@
     text-align: center;
 }
 
+.myProfile__posts {
+    width: 100%;
+}
+
 .myProfile__post {
     margin-top: 10px;
+    width: 100%;
 }

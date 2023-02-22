@@ -6,7 +6,7 @@ import { useStateValue } from '../../lib/react-context-api/StateProvider';
 import './Auth.css'
 
 function Auth() {
-    const [ { isLoggedIn }, dispatch ] = useStateValue();
+    const [ { user }, dispatch ] = useStateValue();
     const [ isSignIn, setIsSignIn ] = useState(true);
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -17,12 +17,13 @@ function Auth() {
             await AuthAPIImpl.signUpOrUpdatePassword(email, password, name);
         }
         await AuthAPIImpl.login(email, password)
-            .then(response => {
-                dispatch({
-                    type: actionTypes.SET_LOGGED_IN_STATE,
-                    isLoggedIn: Boolean(response.data)
-                })
+        .then(response => {
+            dispatch({
+                type: actionTypes.SET_USER,
+                user: response.data
             })
+            console.log(response.data)
+        })
     }
 
     return (

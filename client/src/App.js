@@ -9,29 +9,31 @@ import AppRouter from './pages/Router/Router';
 function App() {
   const [ state, dispatch ] = useStateValue();
 
-  useEffect(() => {
+  const onReload = async () => {
     try {
-      AuthAPIImpl.isLoggedIn()
-        .then(response => {
-          dispatch({
-            type: actionTypes.SET_LOGGED_IN_STATE,
-            isLoggedIn: response.data
-          })
+      await AuthAPIImpl.getUserInfo()
+      .then(response => {
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: response.data
         })
+      })
     } catch (e) {
-      dispatch({
-        type: actionTypes.SET_LOGGED_IN_STATE,
-        isLoggedIn: false
+      await dispatch({
+        type: actionTypes.SET_USER,
+        isLoggedIn: null
       })
     }
-  }, [])
+  }
 
-  AuthAPIImpl.login('snu_sigma@snu.ac.kr', '1234');
+  useEffect(() => {
+    onReload();
+    console.log(state)
+  }, [])
 
   return (
     <div className="app">
-      { state.isLoggedIn? <AppRouter /> : <Auth /> }
-      {/* <AppRouter /> */}
+      { state.user? <AppRouter /> : <Auth /> }
     </div>
   );
 }

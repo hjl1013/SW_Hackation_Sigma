@@ -11,7 +11,7 @@ async function bootstrap() {
 
     // swagger 사용
     const config = new DocumentBuilder()
-        .setTitle('sigma-intelligence-community-server')
+        .setTitle('SW_HACKATHON_SIGMA')
         .build()
     const document = SwaggerModule.createDocument(app, config)
     SwaggerModule.setup('swagger', app, document)

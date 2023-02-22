@@ -4,8 +4,11 @@ import './CreatePost.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Button } from '@mui/material';
 import { CommunityAPIImpl } from '../../../../../../lib/infrastructure/CommunityAPIImpl';
+import { useStateValue } from '../../../../../../lib/react-context-api/StateProvider';
 
 function CreatePost({ communityId, communityName, themeId, themeName }) {
+    const [ { user }, dispatch ] = useStateValue();
+
     const [ postImage, setPostImage ] = useState('');
     const [ postTile, setPostTitle ] = useState('');
     const [ postText, setPostText ] = useState('');
@@ -31,14 +34,17 @@ function CreatePost({ communityId, communityName, themeId, themeName }) {
             title: postTile,
             text: postText
         })
+        setPostImage('')
+        setPostTitle('')
+        setPostText('')
     }
 
     return (
         <div className='createPost'>
             <div className='createPost__header'>
                 <div className='createPost__profile'>
-                    <img src='https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-1/317079557_2760216930776308_2789281660701330884_n.jpg?stp=dst-jpg_p480x480&_nc_cat=101&ccb=1-7&_nc_sid=7206a8&_nc_ohc=O-3tvu7InQIAX94JcOf&_nc_ht=scontent-gmp1-1.xx&oh=00_AfDyy505M8-fbagdf5VRNOz0PsY9AgtWr6V-d6jHe-J_Gw&oe=63F42190' alt='' />
-                    <h4>Hyunjun Lee</h4>
+                    <img src={user.profile.avatar.characterImgUrl} alt='' />
+                    <h4>{user.profile.name}</h4>
                 </div>
             </div>
 

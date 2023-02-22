@@ -37,3 +37,17 @@
     margin-bottom: 20px;
     height: 450px;
 }
+
+.communityMetaChat__buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.communityMetaChat__button > button {
+    background-color: white;
+}
+
+.communityMetaChat__fullScreen > button > p {
+    margin-left: 5px;
+    margin-right: 4px;
+}

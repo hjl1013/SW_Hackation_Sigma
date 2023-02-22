@@ -21,7 +21,7 @@ async function main() {
                     avatar: {
                         create: {
                             characterImgUrl: 'https://media.istockphoto.com/id/1138879772/ko/%EB%B2%A1%ED%84%B0/%EC%8B%9C%EA%B7%B8%EB%A7%88-%EA%B7%B8%EB%A6%AC%EC%8A%A4%EC%96%B4-%EB%AC%B8%EC%9E%90-%EC%95%84%EC%9D%B4%EC%BD%98.jpg?s=612x612&w=0&k=20&c=YqLJqDQgd7u-bKc9vgKhYIIT1rPq-U4eYZTqIZyc5s8=',
-                            carImgUrl: 'https://postfiles.pstatic.net/20151029_98/2569500_1446098418424ENaHs_JPEG/%C7%F6%B4%EB%C5%A9%B7%B9%C5%B8%C8%AD%C0%CC%C6%AE%C1%A4%B8%E9%BB%E7%C1%F8.jpg?type=w1',
+                            carImgUrl: 'https://file.newswire.co.kr/data/datafile2/data/2021/07/3554238800_20210709103022_2517669736.jpg',
                         },
                     },
                 },

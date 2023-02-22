@@ -17,7 +17,7 @@ export class UserWithProfileDto extends UserDto{
     profile: UserProfileDto;
 }
 
-export class UserForGetCommunityDto extends UserDto {
+export class UserWithAvatarDto extends UserDto {
     profile: UserProfileWithGetUserProfileDto
 }
 
