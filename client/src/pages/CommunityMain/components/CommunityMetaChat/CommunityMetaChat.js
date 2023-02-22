@@ -4,10 +4,15 @@ import { Unity, useUnityContext } from 'react-unity-webgl';
 import { Button } from '@mui/material';
 import { CommunityAPIImpl } from '../../../../lib/infrastructure/CommunityAPIImpl';
 
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import { useNavigate } from 'react-router-dom';
+
 function CommunityMetaChat({ communityId }) {
     const [ communityName, setCommunityName ] = useState('')
     const [ communityIntroduction, setCommunityIntroduction ] = useState('')
     const [ communityProfileUrl, setCommunityProfileUrl ] = useState('')
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         CommunityAPIImpl.getPosts(communityId)
@@ -49,7 +54,18 @@ function CommunityMetaChat({ communityId }) {
 
             <div className='communityMetaChat__unityEmbedding'>
                 <Unity unityProvider={unityProvider} />
-                <Button onClick={onClickUnload}>Unload</Button>
+            </div>
+
+            <div className='communityMetaChat__buttons'>
+                <div className='communityMetaChat__button communityMetaChat__unload'>
+                    <Button onClick={onClickUnload}>Unload</Button>
+                </div>
+                <div className='communityMetaChat__button communityMetaChat__fullScreen'>
+                    <Button onClick={() => navigate(`/metaChatFullScreen/${communityId}`)}>
+                        <FullscreenIcon />
+                        <p>Full Screen</p>
+                    </Button>
+                </div>
             </div>
         </div>
     )
