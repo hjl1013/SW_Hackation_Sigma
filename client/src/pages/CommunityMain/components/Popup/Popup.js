@@ -41,4 +41,3 @@ function Popup({title, username, message, image, likes, profilePic}) {
 }
 
 export default Popup
-

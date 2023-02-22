@@ -15,6 +15,7 @@
 .popup__top {
     display: flex;
     position: relative;
+    justify-content: right;
     /* align-items: center; */
     right: 0;
     padding: 10px;
