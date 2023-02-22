@@ -26,10 +26,12 @@ function App() {
     }
   }, [])
 
+  AuthAPIImpl.login('snu_sigma@snu.ac.kr', '1234');
+
   return (
     <div className="app">
-      {/* { state.isLoggedIn? <AppRouter /> : <Auth /> } */}
-      <AppRouter />
+      { state.isLoggedIn? <AppRouter /> : <Auth /> }
+      {/* <AppRouter /> */}
     </div>
   );
 }
