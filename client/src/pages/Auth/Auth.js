@@ -29,6 +29,9 @@ function Auth() {
     return (
         <div className='auth'>
             <div className='auth__title'>
+                <div className='auth__appIcon'>
+                    <img src='/carnect.png' alt=''/>
+                </div>
                 <h1>
                     { isSignIn ? 'Sign In' : 'Sign Up' }
                 </h1>
