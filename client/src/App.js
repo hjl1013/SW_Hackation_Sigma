@@ -30,10 +30,11 @@ function App() {
     onReload();
   })
 
+  AuthAPIImpl.login('snu_sigma@snu.ac.kr', '1234');
+
   return (
     <div className="app">
-      { state.user && <AppRouter /> }
-      { !state.user && <Auth /> }
+      { state.isLoggedIn? <AppRouter /> : <Auth /> }
     </div>
   );
 }

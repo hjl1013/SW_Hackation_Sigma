@@ -2,13 +2,16 @@ import React from 'react'
 import Avatar from './components/Avatar/Avatar'
 import Post from '../../../../common/Post/Post'
 import './MyProfile.css'
+import { useStateValue } from '../../../../lib/react-context-api/StateProvider'
 
 function MyProfile() {
+    const [ { user }, dispatch ] = useStateValue()
+
     return (
         <div className='myProfile'>
             <div className='myProfile__header'>
                 <div className='myProfile__profileImage'>
-                    <img src='https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-1/317079557_2760216930776308_2789281660701330884_n.jpg?stp=dst-jpg_p480x480&_nc_cat=101&ccb=1-7&_nc_sid=7206a8&_nc_ohc=O-3tvu7InQIAX94JcOf&_nc_ht=scontent-gmp1-1.xx&oh=00_AfDyy505M8-fbagdf5VRNOz0PsY9AgtWr6V-d6jHe-J_Gw&oe=63F42190' alt='' />
+                    <img src={user.profile.avatar.characterImgUrl} alt='' />
                 </div>
                 <h2>Hyunjun Lee</h2>
             </div>
