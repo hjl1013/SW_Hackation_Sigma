@@ -1,18 +1,18 @@
 export const initialState = {
-    isLoggedIn: false,
+    user: null
 };
 
 export const actionTypes = {
-    SET_LOGGED_IN_STATE: "SET_LOGGED_IN_STATE",
+    SET_USER: "SET_USER",
 };
 
 const reducer = (state, action) => {
     console.log(action);
     switch (action.type) {
-        case actionTypes.SET_LOGGED_IN_STATE:
+        case actionTypes.SET_USER:
             return {
                 ...state,
-                isLoggedIn: action.isLoggedIn,
+                user: action.user,
             };
         
             default:

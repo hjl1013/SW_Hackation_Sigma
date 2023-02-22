@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './CommunityMetaChat.css'
 import { Unity, useUnityContext } from 'react-unity-webgl';
 import { Button } from '@mui/material';
+import { CommunityAPIImpl } from '../../../../lib/infrastructure/CommunityAPIImpl';
 
-function CommunityMetaChat() {
+function CommunityMetaChat({ communityId }) {
+    const [ communityName, setCommunityName ] = useState('')
+    const [ communityIntroduction, setCommunityIntroduction ] = useState('')
+    const [ communityProfileUrl, setCommunityProfileUrl ] = useState('')
+
+    useEffect(() => {
+        CommunityAPIImpl.getPosts(communityId)
+        .then(response => {
+            const communityInfo =  response.data
+
+            setCommunityName(communityInfo.commuName)
+            setCommunityIntroduction(communityInfo.commuIntro)
+            setCommunityProfileUrl(communityInfo.commuProfileImgUrl)
+        })
+    })
+
     const { unityProvider, unload } = useUnityContext({
         loaderUrl: "Unity/web.loader.js",
         dataUrl: "Unity/web.data",
@@ -19,11 +35,11 @@ function CommunityMetaChat() {
         <div className='communityMetaChat'>
             <div className='communityMetaChat__communityProfile'>
                 <div className='communityMetaChat__communityProfileImage'>
-                    <img src='https://www.visakorea.com/content/dam/VCOM/regional/ap/southkorea/travelwithvisa/marquee-travel-with-visa-1920x720.jpg' alt='' />
+                    <img src={communityProfileUrl} alt='' />
                 </div>
                 <div className='communityMetaChat__communityProfileInfo'>
-                    <h1>Trip</h1>
-                    <p>Lets go on a trip!!!</p>
+                    <h1>{communityName}</h1>
+                    <p>{communityIntroduction}</p>
                 </div>
             </div>
 

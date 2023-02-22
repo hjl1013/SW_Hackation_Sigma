@@ -1,5 +1,5 @@
 import { Post } from '@prisma/client'
-import { UserForGetCommunityDto, UserWithProfileDto } from './user.dto'
+import { UserWithAvatarDto, UserWithProfileDto } from './user.dto'
 import { CommuThemeDto, CommuThemeWithCommunityDto } from './commutheme.dto'
 
 export class PostDto implements Post{
@@ -25,7 +25,7 @@ export class PostWithPostInfoDto extends PostDto{
 }
 
 export class PostForGetCommunityDto extends PostDto{
-    user: UserForGetCommunityDto;
+    user: UserWithAvatarDto;
 }
 
 export class PostWithGetUserProfileDto extends PostDto{

@@ -11,7 +11,7 @@ export const AuthAPIImpl = {
     signUpOrUpdatePassword: async (email: string, password: string, name: string): Promise<void> => {
         await axios.post('/auth/sign-up', { email, password, name })
     },
-    isLoggedIn: async (): Promise<boolean> => {
-        return await axios.get('/auth/is-logged-in')
+    getUserInfo: async (): Promise<UserDto> => {
+        return await axios.get('/auth/user')
     }
 }
