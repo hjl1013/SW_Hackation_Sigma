@@ -12,6 +12,7 @@
 
 .avatar__image > img {
     box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
-    width: 300px;
-    height: 300px;
+    width: 290px;
+    height: 290px;
+    border-radius: 10px;
 }
