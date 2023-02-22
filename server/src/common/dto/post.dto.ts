@@ -29,5 +29,5 @@ export class PostForGetCommunityDto extends PostDto{
 }
 
 export class PostWithGetUserProfileDto extends PostDto{
-    commuTheme: CommuThemeDto;
+    commuTheme: CommuThemeWithCommunityDto;
 }

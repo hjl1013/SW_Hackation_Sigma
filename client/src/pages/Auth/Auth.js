@@ -22,6 +22,7 @@ function Auth() {
                 type: actionTypes.SET_USER,
                 user: response.data
             })
+            console.log(response.data)
         })
     }
 

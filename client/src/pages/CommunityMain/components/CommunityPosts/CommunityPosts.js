@@ -49,7 +49,7 @@ function CommunityPosts({ communityId }) {
             setCommunityProfileUrl(communityInfo.commuProfileImgUrl);
             setCommunityIntroduction(communityInfo.commuIntro);
         })
-    })
+    }, [])
 
     const onClickCreateButton = () => {
         setIsCreating(state => !state);
@@ -115,6 +115,7 @@ function CommunityPosts({ communityId }) {
                                             communityName={communityName}
                                             themeName={postsInfo.themeName}
                                             postInfo={post}
+                                            userInfo={post.user}
                                         />
                                     </div>
                                 )

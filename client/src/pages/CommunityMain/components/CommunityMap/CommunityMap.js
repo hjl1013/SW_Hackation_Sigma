@@ -778,7 +778,7 @@ function CommunityMap({ communityId }) {
             setPostsInfoByTheme(postsInfoByThemeTemp)
             // setInfoWindow(infowindow);
         })
-    })
+    }, [])
 
 
 

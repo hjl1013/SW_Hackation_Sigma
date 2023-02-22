@@ -5,13 +5,13 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import NearMeIcon from '@mui/icons-material/NearMe';
 
-function Post({ communityName, themeName, postInfo }) {
+function Post({ communityName, themeName, postInfo, userInfo }) {
     return (
         <div className='post'>
             <div className='post__header'>
                 <div className='post__profile'>
-                    <img src={postInfo.user.profile.avatar.characterImgUrl} alt='' />
-                    <h4>{postInfo.user.profile.name}</h4>
+                    <img src={userInfo.profile.avatar.characterImgUrl} alt='' />
+                    <h4>{userInfo.profile.name}</h4>
                 </div>
             </div>
 

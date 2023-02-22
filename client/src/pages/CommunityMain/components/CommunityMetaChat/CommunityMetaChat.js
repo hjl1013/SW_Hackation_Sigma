@@ -18,7 +18,7 @@ function CommunityMetaChat({ communityId }) {
             setCommunityIntroduction(communityInfo.commuIntro)
             setCommunityProfileUrl(communityInfo.commuProfileImgUrl)
         })
-    })
+    }, [])
 
     const { unityProvider, unload } = useUnityContext({
         loaderUrl: "Unity/web.loader.js",

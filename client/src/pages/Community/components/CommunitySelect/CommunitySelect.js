@@ -44,7 +44,7 @@ function CommunitySelect() {
                     communities.map(community => {
                         const { id, commuProfileImgUrl, commuName, commuIntro } = community;
                         return (
-                            <Link to={`/community/${id}/home`}>
+                            <Link key={commuName} to={`/community/${id}/home`}>
                                 <div className='communitySelect__communityIcon'>
                                     <CommunityIcon
                                         profileImg={commuProfileImgUrl}

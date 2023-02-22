@@ -482,9 +482,9 @@ function MyMarkers() {
             <button>목적지 선택하기</button>
         </div> */}
         <div className='mymarker__bottom'>
-            <input className='mymarker__button' id="address" type="text" placeholder="목적지를 입력하세요" onKeyUp={handleEnterSubmit}></input>
-            <button className='mymarker__button' id='submit' type='button' onClick={handleSubmit}>검색</button>
-            <button className='mymarker__button' onClick={onClickSetDestination}>목적지 설정</button>
+            <input className='mymarker__input' id="address" type="text" placeholder="목적지를 입력하세요" onKeyUp={handleEnterSubmit}></input>
+            <Button className='mymarker__button' id='submit' type='button' onClick={handleSubmit}>검색</Button>
+            <Button className='mymarker__button' onClick={onClickSetDestination}>목적지 설정</Button>
         </div>
     </div>
   );

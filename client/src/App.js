@@ -11,7 +11,7 @@ function App() {
 
   const onReload = async () => {
     try {
-      AuthAPIImpl.getUserInfo()
+      await AuthAPIImpl.getUserInfo()
       .then(response => {
         dispatch({
           type: actionTypes.SET_USER,
@@ -19,7 +19,7 @@ function App() {
         })
       })
     } catch (e) {
-      dispatch({
+      await dispatch({
         type: actionTypes.SET_USER,
         isLoggedIn: null
       })
@@ -28,13 +28,12 @@ function App() {
 
   useEffect(() => {
     onReload();
-  })
-
-  AuthAPIImpl.login('snu_sigma@snu.ac.kr', '1234');
+    console.log(state)
+  }, [])
 
   return (
     <div className="app">
-      { state.isLoggedIn? <AppRouter /> : <Auth /> }
+      { state.user? <AppRouter /> : <Auth /> }
     </div>
   );
 }

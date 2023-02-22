@@ -48,7 +48,7 @@ function CommunityHome({ communityId }) {
         } catch (e) {
             console.log(e);
         }
-    })
+    }, [])
 
     return (
         <div className='communityHome'>
@@ -76,6 +76,7 @@ function CommunityHome({ communityId }) {
                                     communityName={communityName}
                                     themeName={postInfo.themeName}
                                     postInfo={postInfo.post}
+                                    userInfo={postInfo.post.user}
                                 />
                             </div>
                         );
@@ -94,6 +95,7 @@ function CommunityHome({ communityId }) {
                                     communityName={communityName}
                                     themeName={postInfo.themeName}
                                     postInfo={postInfo.post}
+                                    userInfo={postInfo.post.user}
                                 />
                             </div>
                         );
