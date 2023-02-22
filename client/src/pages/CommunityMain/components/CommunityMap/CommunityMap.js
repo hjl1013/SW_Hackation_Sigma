@@ -787,7 +787,6 @@ function CommunityMap({ communityId }) {
     }
 
     const handleButtonClick = (e) => {
-        alert(e.target.innerText);
         if (selectedTheme === e.target.innerText) {
             setSelectedTheme('');
         }
