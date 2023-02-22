@@ -5,17 +5,16 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import NearMeIcon from '@mui/icons-material/NearMe';
 
-function Popup({title, username, message, image, likes}) {
+function Popup({title, username, message, image, likes, profilePic}) {
   return (
     <div className='popup'>
       <div className='popup__title'>
-        {title}
+        <h3>{title}</h3>
       </div>
       <div className='popup__top'>
-        <Avatar />
+        <img src={profilePic} />
         <div className='popup__topInfo'>
-            <h3>{username}</h3>
-            {/* <p>Timestamp...</p> */}
+            <h4>{username}</h4>
         </div>
       </div>
 
@@ -36,18 +35,6 @@ function Popup({title, username, message, image, likes}) {
             <p>{likes}</p>
             <p>Like</p>
         </div>
-        {/* <div className='popup__option'>
-            <ChatBubbleOutlineIcon />
-            <p>Comment</p>
-        </div>
-        <div className='popup__option'>
-            <NearMeIcon />
-            <p>Share</p>
-        </div> */}
-        {/* <div className='popup__option'>
-            <AccountCircleIcon />
-            <ExpandMoreIcon />
-        </div> */}
       </div>
     </div>
   )

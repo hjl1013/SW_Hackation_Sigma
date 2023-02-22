@@ -551,7 +551,7 @@ function CommunityMap({ communityId }) {
 
             setThemeInfos(themeInfosTemp)
             setPostsInfoByTheme(postsInfoByThemeTemp)
-            setInfoWindow(infowindow);
+            // setInfoWindow(infowindow);
         })
     })
 
@@ -586,7 +586,6 @@ function CommunityMap({ communityId }) {
 
                 title={title}
                 username={username}
-                // message='동아리 대표로 나온 이번 해커톤에서 동아리 이름도 빛내고 학교 이름도 빛내보자! 아자아자~~'
                 message={message}
                 image={image}
                 likes={likes}
@@ -653,7 +652,8 @@ function CommunityMap({ communityId }) {
                                                     anchor: new navermaps.Point(25, 25),
                                                 }}
                                                 // title, username, message, image, likes
-                                                onClick={(e) => toggleInfoWindow(e, post.title, post.user.profile.name, post.text, post.ImgUrl, post.numberOfHearts)}
+                                                onClick={(e) => toggleInfoWindow(e, post.title, post.user.profile.name, post.text, post.ImgUrl,
+                                                                                    post.numberOfHearts, postsInfo.commuProfileImgUrl)}
                                             />
 
                                         {/* {isOpen && (
