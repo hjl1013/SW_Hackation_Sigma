@@ -1,0 +1,72 @@
+.mymarker {
+    justify-content: center;
+    align-items: center;
+}
+
+.mymarker__top {
+    position: absolute;
+    top: 2%;
+    left: 35%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+    width: 400px;
+    border-radius: 10px;
+    /* box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.75); */
+}
+
+.mymarker__top > button {
+    background-color: transparent;
+    border: none;
+    margin: -5px;
+}
+
+.mymarker__bottom {
+    position: absolute;
+    top: 2%;
+    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.75);
+}
+
+.mymarker__bottom > input {
+    border: none;
+    outline-width: 0;
+}
+
+.mymarker__bottom > button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#address {
+    width: 200px;
+    height: 30px;
+}
+
+#submit {
+    width: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mymarker__bottom > button {
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mymarker__bottom > button:hover {
+    background-color: #2e81f4;
+    color: white;
+}

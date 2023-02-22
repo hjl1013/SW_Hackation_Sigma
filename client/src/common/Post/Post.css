@@ -2,6 +2,9 @@
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
 }
 
 .post__profile {
@@ -23,22 +26,42 @@
     box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
 }
 
-.post__context > p {
+.post__contextText > p {
     padding: 10px;
 }
 
-.post__communities {
-    display: flex;
+.post__contextImage {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.post__community {
+.post__contextImage > img {
+    width: 100%;
+}
+
+.post__categories {
+    display: flex;
+    padding: 10px;
+}
+
+.post__category {
     padding: 10px;
     background-color: lightgray;
     border-radius: 10px;
-    margin: 10px 0 10px 10px;
+    margin-right: 10px;
 }
 
-.post__community > h4 {
+.post__category--community {
+    background-color: #2e81f4;
+    color: white;
+}
+
+.post__category--theme {
+    background-color: lightgray;
+    color: white;
+}
+
+.post__category > h4 {
     font-weight: 500;
 }
 

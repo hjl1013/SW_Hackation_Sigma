@@ -20,7 +20,11 @@ export class ProfileService {
                 },
                 posts: {
                     include: {
-                        commuTheme: true,
+                        commuTheme: {
+                            include: {
+                                community: true
+                            }
+                        },
                     },
                 },
             },

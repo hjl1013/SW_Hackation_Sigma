@@ -47,7 +47,7 @@ function MenuBar({ page }) {
                 </div>
             </Link>
 
-            <Link to='/'>
+            <Link to='/Settings'>
                 <div className={`menuBar__item ${ page === 'settings' && 'menuBar__item--active' }`}>
                     <SettingsIcon />
                     <h4>Settings</h4>

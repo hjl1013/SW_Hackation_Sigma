@@ -1,0 +1,86 @@
+.communityMap__mapDiv {
+    position: relative;
+}
+
+.communityMap__filterArea {
+    /* position: relative; */
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 100vw;
+    height: 300px; */
+    /* right: 15%; */
+    /* background-color: #2e81f4; */
+    /* border-radius: 15px; */
+}
+
+.communityMap__filterIcon {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    /* margin: 5px; */
+    padding: 1px;
+    top: 20%;
+    right: 220px;
+    width: 40px;
+    height: 40px;
+    background-color: #2e81f4;
+    /* background-color: wheat; */
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: transform 100ms ease-in;
+}
+
+.communityMap__filterIcon:hover {
+    transform: scale(1.07);
+    cursor: pointer;
+}
+
+.communityMap__filterIcon > .MuiSvgIcon-root {
+    font-size: medium;
+    color: white;
+}
+
+.communityMap__filterIcon > p {
+    color: white;
+    font-size: small;
+    /* font-family: sans-serif; */
+    font-weight: bold;
+}
+
+.communityMap__filterBox {
+    position: fixed;
+    right: 270px;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: #2e81f4;
+    border-radius: 15px;
+}
+
+.communityMap__filter {
+    /* position: absolute; */
+    z-index: 999;
+    /* top: 0;
+    right: 0; */
+    width: 60px;
+    height: 30px;
+    margin: 7px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 10px;
+    /* margin-left: 5px;
+    margin-right: 5px; */
+    transition: 0.2s;
+    border: none;
+    box-shadow: 3px 0 5px -3px rgba(0, 0, 0, 0.75);
+
+}
+
+.communityMap__filter:hover {
+    background-color: #2e81f4;
+    color: white;
+}

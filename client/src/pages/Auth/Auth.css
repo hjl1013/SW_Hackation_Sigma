@@ -1,0 +1,54 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.auth__title > h1 {
+    text-align: center;
+}
+
+.auth__inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.auth__input {
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    width: 200px;
+}
+
+.auth__input > input {
+    border: none;
+    outline-width: 0;
+    background-color: transparent;
+    width: 100%;
+}
+
+.auth__switchState {
+    display: flex;
+    justify-content: center;
+    font-size: small;
+    margin-bottom: 10px;
+}
+
+.auth__switchState > p {
+    cursor: pointer;
+}
+
+.auth__switchState > p:hover {
+    color: lightgray;
+}
+
+.auth__submitButton {
+    display: flex;
+    justify-content: space-evenly;
+}

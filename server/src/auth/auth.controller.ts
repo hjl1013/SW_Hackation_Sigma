@@ -1,4 +1,4 @@
-import { Body, Controller, ForbiddenException, Patch, Post, Res } from '@nestjs/common'
+import { Body, Controller, ForbiddenException, Get, Patch, Post, Res } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { Response } from 'express'
 import { ApiTags } from '@nestjs/swagger'
@@ -6,7 +6,7 @@ import { LoginCredentialsDto } from './dto/login-credentials.dto'
 import { Public } from '../utility/decorators/public.decorator'
 import { ConfigService } from '../config/config.service'
 import { SignUpCredentialsDto } from './dto/sign-up-credentials.dto'
-import { UserDto } from 'src/common/dto/user.dto'
+import { UserDto, UserWithAvatarDto } from 'src/common/dto/user.dto'
 import { DesCredentialsDto } from '../location/dto/des-credentials.dto'
 import { User } from '@prisma/client'
 import { ExtractUser } from 'src/utility/decorators/extract-user.decorator'
@@ -24,7 +24,7 @@ export class AuthController {
     async login(
         @Body() loginCredentialsDto: LoginCredentialsDto,
         @Res({ passthrough: true }) response: Response,
-    ): Promise<void> {
+    ): Promise<UserDto> {
         const user = await this.authService.validateUser(loginCredentialsDto)
         if (user === undefined) {
             throw new ForbiddenException(
@@ -44,6 +44,7 @@ export class AuthController {
                 secure: true,
             },
         )
+        return this.authService.getUserInfo(user);
     }
 
     @Public()
@@ -52,5 +53,12 @@ export class AuthController {
         @Body() signUpCredentials: SignUpCredentialsDto,
     ): Promise<UserDto> {
         return this.authService.signUp(signUpCredentials)
+    }
+
+    @Get('user')
+    async getUserInfo(
+        @ExtractUser() user: User
+    ): Promise<UserWithAvatarDto> {
+        return this.authService.getUserInfo(user);
     }
 }

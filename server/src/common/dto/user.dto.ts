@@ -17,6 +17,10 @@ export class UserWithProfileDto extends UserDto{
     profile: UserProfileDto;
 }
 
+export class UserWithAvatarDto extends UserDto {
+    profile: UserProfileWithGetUserProfileDto
+}
+
 export class UserWithGetUserProfileDto extends UserDto{
     profile: UserProfileWithGetUserProfileDto;
     posts: Array<PostWithGetUserProfileDto>;

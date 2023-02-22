@@ -1,0 +1,33 @@
+.metaChatFullScreen__unity > canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+.metaChatFullScreen__button {
+    position: fixed;
+}
+
+.metaChatFullScreen__unload {
+    left: 10px;
+    bottom: 10px;
+}
+
+.metaChatFullScreen__exitFullScreen {
+    right: 10px;
+    bottom: 10px;
+}
+
+.metaChatFullScreen__button > button {
+    background-color: transparent;
+    color: black;
+}
+
+.metaChatFullScreen__button > button:hover {
+    background-color: lightgray;
+    color: white;
+}
+
+.metaChatFullScreen__exitFullScreen > button > p {
+    margin-left: 5px;
+    margin-right: 4px;
+}

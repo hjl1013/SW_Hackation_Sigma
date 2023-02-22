@@ -8,8 +8,10 @@ import { PostcreateCredentialsDto } from './dto/postcreate-credentials.dto';
 import { CommunityDto, GetCommunityDto } from 'src/common/dto/community.dto';
 import { PostDto, PostWithPostInfoDto } from 'src/common/dto/post.dto';
 import { CommuThemeWithCommunityDto } from 'src/common/dto/commutheme.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('community')
+@ApiTags('community')
 export class CommunityController {
     constructor(private communityService: CommunityService) {}
     
@@ -19,8 +21,13 @@ export class CommunityController {
     ): Promise<CommunityDto> {
         return this.communityService.createCommunity(communitycreateCredentialsDto);
     }
+
+    @Get('/')
+    getAllCommunities(): Promise<Array<CommunityDto>> {
+        return this.communityService.getAllCommunities();
+    }
     
-    @Post('/:commuId/createtheme')
+    @Post('/:commuId/createTheme')
     createCommuTheme(
         @Param('commuId', ParseIntPipe) commuId: number,
         @Body() themecreateCredentialsDto: ThemecreateCredentialsDto
@@ -38,14 +45,14 @@ export class CommunityController {
         return this.communityService.postAtCommu(user, commuId, postcreateCredentialsDto);
     }
 
-    @Get('/:commuId/commuThemes')
+    @Get('/:commuId/posts')
     getCommuInfoById(
         @Param('commuId', ParseIntPipe) commuId: number,
     ): Promise<GetCommunityDto>  {
         return this.communityService.getCommuInfoById(commuId);
     }
 
-    @Patch('/:commuId/post/:postId')
+    @Patch(':postId/increaseHearts')
     increaseNumberOfHearts(
         @Param('commuId', ParseIntPipe) commuId: number,
         @Param('postId', ParseIntPipe) postId: number,

@@ -3,7 +3,8 @@ import './CommunityCreate.css'
 
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { CommunityAPIImpl } from '../../../../lib/infrastructure/CommunityAPIImpl';
 
 function CommunityCreate() {
     const [ communityImage, setCommunityImage ] = useState('');
@@ -14,6 +15,7 @@ function CommunityCreate() {
     const [ themeName, setThemeName ] = useState('');
     const [ themeIcon, setThemeIcon ] = useState('');
 
+    const navigate = useNavigate();
 
     const onCommunityImageFileChange = (event) => {
         const {target : {files}} = event;
@@ -52,6 +54,33 @@ function CommunityCreate() {
         ]);
         setThemeIcon('');
         setThemeName('');
+    }
+    const onClickSubmit = async () => {
+        try {
+            let communityId;
+            await CommunityAPIImpl.createCommunity({
+                commuProfileImgUrl: communityImage,
+                commuName: communityName,
+                commuIntro: communityIntroduction,
+                commuHT: [ communityHashTag ],
+                commuMemberNumber: "10M"
+            }).then(response => {
+                communityId = response.data.id
+                console.log(communityId);
+            })
+
+            await communityThemes.forEach(theme => {
+                console.log(communityId);
+                CommunityAPIImpl.createTheme(communityId, {
+                    commuThemeName: theme.themeName,
+                    commuThemeIconUrl: theme.themeIcon
+                })
+            })
+
+            navigate('/community/select')
+        } catch(e) {
+            console.log(e);
+        }
     }
 
     return (
@@ -117,12 +146,10 @@ function CommunityCreate() {
                     </div>
                 </div>
             </div>
-            
-            <Link to='/community/select'>
-                <div className='communityCreate__createButton'>
-                    <Button>Create Community</Button>
-                </div>
-            </Link>
+
+            <div className='communityCreate__createButton'>
+                <Button onClick={onClickSubmit}>Create Community</Button>
+            </div>
         </div>
     )
 }

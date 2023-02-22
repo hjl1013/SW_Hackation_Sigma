@@ -2,14 +2,16 @@
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    height: 100%;
 }
 
-.avatar > h4 {
+.avatar__title > h4 {
     text-align: center;
     padding: 10px;
 }
 
-.avatar > img {
+.avatar__image > img {
     box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
     width: 300px;
+    height: 300px;
 }
